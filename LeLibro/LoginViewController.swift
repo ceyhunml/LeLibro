@@ -26,6 +26,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signInButtonPressed(_ sender: Any) {
+        let controller = storyboard?.instantiateViewController(withIdentifier: "MenuViewController")
+        navigationController?.show(controller!, sender: nil)
     }
     
 
