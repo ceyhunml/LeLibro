@@ -17,14 +17,18 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         getStartedLabel.font = UIFont(name: "Rosarivo", size: 48)
         joinUsLabel.font = UIFont(name: "Rosarivo", size: 26)
-        createAccountButton.titleLabel?.font = UIFont(name: "Rosarivo", size: 16)
-        signInButton.titleLabel?.font = UIFont(name: "Rosarivo", size: 16)
+        createAccountButton.applyRosarivoFont(title: "Create an account", size: 16)
+        signInButton.applyRosarivoFont(title: "Sign in to your account", size: 16)
     }
     
     @IBAction func createAccountButtonPressed(_ sender: Any) {
+        let controller = storyboard?.instantiateViewController(withIdentifier: "RegisterViewController")
+        navigationController?.show(controller!, sender: nil)
     }
     
     @IBAction func signInButtonPressed(_ sender: Any) {
+        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+        navigationController?.show(controller!, sender: nil)
     }
     
 }

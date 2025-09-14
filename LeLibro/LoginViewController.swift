@@ -8,22 +8,25 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        welcomeLabel.font = UIFont(name: "Rosarivo", size: 48)
+        emailLabel.font = UIFont(name: "Rosarivo", size: 16)
+        passwordLabel.font = UIFont(name: "Rosarivo", size: 16)
+        emailTextField.font = UIFont(name: "Rosarivo", size: 16)
+        passwordTextField.font = UIFont(name: "Rosarivo", size: 16)
+        signInButton.applyRosarivoFont(title: "Sign in", size: 16)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func signInButtonPressed(_ sender: Any) {
     }
-    */
+    
 
 }
