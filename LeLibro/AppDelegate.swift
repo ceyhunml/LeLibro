@@ -14,8 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+        
+        UITabBarItem.appearance().setTitleTextAttributes(
+        [
+            .font: UIFont(name: "Rosarivo", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .bold),
+            .foregroundColor: UIColor.gray
+        ],
+        for: .normal
+    )
+
+    UITabBarItem.appearance().setTitleTextAttributes(
+        [
+            .font: UIFont(name: "Rosarivo", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .bold),
+            .foregroundColor: UIColor.main
+        ],
+        for: .selected
+    )
+    return true
     }
 
     // MARK: UISceneSession Lifecycle

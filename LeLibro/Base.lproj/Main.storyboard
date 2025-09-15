@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gpI-aB-ifM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oXD-gk-9K9">
     <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
@@ -383,16 +383,104 @@ Back!</string>
             </objects>
             <point key="canvasLocation" x="2482.0895522388059" y="-2.0594965675057209"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--Profile-->
+        <scene sceneID="ZkH-rK-M3K">
+            <objects>
+                <viewController id="Ov5-ci-csm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NuJ-iu-lis">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="757"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="lKp-60-dWp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle" catalog="system" id="Zf4-cG-fzJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B9d-1s-11O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2139" y="1090"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="aIh-0B-9zi">
+            <objects>
+                <tabBarController id="oXD-gk-9K9" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="E7u-Xl-Obr">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="backgroundLayer"/>
+                        <color key="tintColor" name="mainColor"/>
+                        <color key="barTintColor" name="backgroundLayer"/>
+                        <color key="selectedImageTintColor" name="mainColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="L4h-Mz-NTl" kind="relationship" relationship="viewControllers" id="FEs-t2-qpt"/>
+                        <segue destination="ysj-vc-HeU" kind="relationship" relationship="viewControllers" id="s30-3K-GoT"/>
+                        <segue destination="B1S-YA-Nqo" kind="relationship" relationship="viewControllers" id="bfa-Uv-1Kz"/>
+                        <segue destination="8ib-fd-8cc" kind="relationship" relationship="viewControllers" id="lAE-Wu-nRF"/>
+                        <segue destination="Ov5-ci-csm" kind="relationship" relationship="viewControllers" id="Q0W-sX-lzR"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MFX-Rs-1NN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1090" y="806"/>
+        </scene>
+        <!--Basket-->
+        <scene sceneID="IxI-Ow-J4K">
+            <objects>
+                <viewController id="8ib-fd-8cc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="52B-WO-vqc">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="757"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="9Hk-2J-HYI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Basket" image="basket" catalog="system" id="DrZ-Pm-XxV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ldK-E4-I3A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1091" y="1602"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="K3B-mg-BWU">
+            <objects>
+                <viewController id="ysj-vc-HeU" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AiP-j0-l1D">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="757"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ESx-rl-Eot"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="3G5-5P-a8F"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9om-j5-uND" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="724" y="1430"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="vPs-aj-dKt">
+            <objects>
+                <viewController id="B1S-YA-Nqo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Uxp-4E-u0e">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="757"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ZeQ-Lm-hJK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="star.fill" catalog="system" id="r5F-MK-Yla"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3jL-rX-WqR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-173" y="1602"/>
+        </scene>
+        <!--Main-->
         <scene sceneID="Dsa-m5-5n9">
             <objects>
                 <viewController storyboardIdentifier="MenuViewController" id="L4h-Mz-NTl" customClass="MenuViewController" customModule="LeLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5rV-AI-Au5">
-                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="757"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J6E-nf-JBY">
-                                <rect key="frame" x="0.0" y="124" width="402" height="682"/>
+                                <rect key="frame" x="0.0" y="124" width="402" height="633"/>
                                 <color key="backgroundColor" name="backgroundLayer"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TsN-AI-WPX">
                                     <size key="itemSize" width="128" height="128"/>
@@ -421,13 +509,14 @@ Back!</string>
                             <constraint firstItem="Wvz-f3-4Qa" firstAttribute="trailing" secondItem="J6E-nf-JBY" secondAttribute="trailing" id="ZOC-3B-cyp"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Main" image="book" catalog="system" id="0ck-bJ-Sjy"/>
                     <connections>
                         <outlet property="collection" destination="J6E-nf-JBY" id="pJH-7o-tT9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5p-8e-kNa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3273" y="-3"/>
+            <point key="canvasLocation" x="111.94029850746269" y="650.80091533180769"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g9g-7D-nWP">
@@ -450,6 +539,11 @@ Back!</string>
     </scenes>
     <resources>
         <image name="backgroundImage" width="1024" height="768"/>
+        <image name="basket" catalog="system" width="128" height="108"/>
+        <image name="book" catalog="system" width="128" height="99"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="123"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="backgroundLayer">
             <color red="0.10999999940395355" green="0.086000002920627594" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
