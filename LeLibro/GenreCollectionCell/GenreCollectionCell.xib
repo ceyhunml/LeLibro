@@ -21,7 +21,7 @@
                         <rect key="frame" x="2" y="2" width="167" height="93"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyg-jd-zn2">
-                                <rect key="frame" x="10" y="37" width="147" height="19.333333333333329"/>
+                                <rect key="frame" x="12" y="37" width="143" height="19.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" name="mainColor"/>
                                 <nil key="highlightedColor"/>
@@ -29,10 +29,10 @@
                         </subviews>
                         <color key="backgroundColor" name="backgroundLayer"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="uyg-jd-zn2" secondAttribute="trailing" constant="10" id="HnX-Fq-TYw"/>
+                            <constraint firstAttribute="trailing" secondItem="uyg-jd-zn2" secondAttribute="trailing" constant="12" id="HnX-Fq-TYw"/>
                             <constraint firstItem="uyg-jd-zn2" firstAttribute="centerX" secondItem="ofd-b1-hgQ" secondAttribute="centerX" id="huw-bB-gif"/>
                             <constraint firstItem="uyg-jd-zn2" firstAttribute="centerY" secondItem="ofd-b1-hgQ" secondAttribute="centerY" id="jbk-mP-Cmu"/>
-                            <constraint firstItem="uyg-jd-zn2" firstAttribute="leading" secondItem="ofd-b1-hgQ" secondAttribute="leading" constant="10" id="jod-uC-muH"/>
+                            <constraint firstItem="uyg-jd-zn2" firstAttribute="leading" secondItem="ofd-b1-hgQ" secondAttribute="leading" constant="12" id="jod-uC-muH"/>
                         </constraints>
                     </view>
                 </subviews>

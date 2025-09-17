@@ -23,5 +23,7 @@ func makeNavigationLogoView(imageName: String, size: CGFloat) -> UIView {
         imageView.heightAnchor.constraint(equalToConstant: size)
     ])
 
+    containerView.heightAnchor.constraint(equalToConstant: size + 12).isActive = true
+    
     return containerView
 }

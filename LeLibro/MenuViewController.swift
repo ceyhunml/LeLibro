@@ -14,6 +14,8 @@ class MenuViewController: UIViewController {
     
     var genres = [GenreSection]()
     
+    var selectedGenre: String?
+    
     let manager = CoreDataManager()
     
     var filteredBooks = [BookEntity]()
@@ -22,7 +24,7 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 180)
+        navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 140)
         books = manager.fetchBooks()
         groupBooksByGenre()
         collection.collectionViewLayout = createLayout()
@@ -44,32 +46,39 @@ class MenuViewController: UIViewController {
         return UICollectionViewCompositionalLayout { sectionIndex, environment -> NSCollectionLayoutSection? in
             
             if sectionIndex == 0 {
-                
-                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(140),
-                                                      heightDimension: .absolute(40))
+                let itemSize = NSCollectionLayoutSize(
+                    widthDimension: .estimated(80),
+                    heightDimension: .absolute(34)
+                )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(140),
-                                                       heightDimension: .absolute(40))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                group.interItemSpacing = .fixed(20)
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .estimated(80),
+                    heightDimension: .absolute(44)
+                )
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: groupSize,
+                    subitems: [item]
+                )
+                group.interItemSpacing = .fixed(12)
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
+                section.interGroupSpacing = 12
                 section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
                 return section
                 
             } else {
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.5),
-                    heightDimension: .absolute(230)
+                    heightDimension: .absolute(360)
                 )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
                 
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(230)
+                    heightDimension: .absolute(360)
                 )
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
                 
@@ -100,25 +109,27 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GenreCollectionCell", for: indexPath) as! GenreCollectionCell
-            cell.genreLabel.text = genres[indexPath.item].genre
+            let genre = genres[indexPath.item].genre
+            cell.genreLabel.text = genre
+            cell.contentView.layer.cornerRadius = 12
+
             return cell
-       } else {
-           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionCell", for: indexPath) as! BooksCollectionCell
-           cell.layer.cornerRadius = 12
-           cell.priceLabel.text = "\(String(books[indexPath.row].price))$"
-           cell.bookCover.image = UIImage(named: books[indexPath.row].coverImage ?? "")
-           cell.bookNameLabel.text = books[indexPath.row].title
-           cell.bookRating.text = String(books[indexPath.row].rating)
-           return cell
-       }
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionCell", for: indexPath) as! BooksCollectionCell
+            cell.layer.cornerRadius = 12
+            let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
+            cell.priceLabel.text = "\(String(book.price))$"
+            cell.bookCover.image = UIImage(named: book.coverImage ?? "")
+            cell.bookNameLabel.text = book.title
+            cell.bookRating.text = String(book.rating)
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            
             let selectedGenre = genres[indexPath.item].genre
             filteredBooks = books.filter { $0.genre == selectedGenre }
-            
             collectionView.reloadSections(IndexSet(integer: 1))
         }
     }

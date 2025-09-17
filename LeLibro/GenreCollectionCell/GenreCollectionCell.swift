@@ -19,5 +19,20 @@ class GenreCollectionCell: UICollectionViewCell {
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
     }
-
+    
+    override var isSelected: Bool {
+        didSet {
+            updateAppearance(selected: isSelected)
+        }
+    }
+    
+    private func updateAppearance(selected: Bool) {
+        if selected {
+            backView.backgroundColor = .main
+            genreLabel.textColor = .backgroundLayer
+        } else {
+            backView.backgroundColor = .backgroundLayer
+            genreLabel.textColor = .main
+        }
+    }
 }

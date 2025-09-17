@@ -21,7 +21,9 @@ class BooksCollectionCell: UICollectionViewCell {
         starField.layer.cornerRadius = 15
         bookCover.layer.cornerRadius = 15
         priceField.layer.cornerRadius = 12
-        bookNameLabel.font = UIFont(name: "Rosarivo", size: 14)
+        starField.layer.maskedCorners = [.layerMinXMinYCorner,
+                                          .layerMaxXMaxYCorner]
+        bookNameLabel.font = UIFont(name: "Rosarivo", size: 16)
     }
     
     @IBAction func basketButtonPressed(_ sender: Any) {
