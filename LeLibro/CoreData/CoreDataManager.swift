@@ -40,10 +40,10 @@ class CoreDataManager {
              "publishedDate": "26-06-1997",
              "genre": "Fantasy",
              "summary": """
-    Eleven-year-old Harry Potter discovers that he is a wizard on his birthday and receives an invitation to Hogwarts School of Witchcraft and Wizardry. \
-    At Hogwarts, he makes friends, learns magic, and uncovers the mystery surrounding his parents' death. \
-    As he faces challenges from dark forces and uncovers secrets of the wizarding world, Harry begins his journey as a hero destined to confront the dark wizard Voldemort.
-    """,
+            Eleven-year-old Harry Potter discovers that he is a wizard on his birthday and receives an invitation to Hogwarts School of Witchcraft and Wizardry. \
+            At Hogwarts, he makes friends, learns magic, and uncovers the mystery surrounding his parents' death. \
+            As he faces challenges from dark forces and uncovers secrets of the wizarding world, Harry begins his journey as a hero destined to confront the dark wizard Voldemort.
+            """,
              "coverImage": "harry_potter1",
              "rating": 4.8,
              "price": 9.99],
@@ -53,10 +53,10 @@ class CoreDataManager {
              "publishedDate": "02-07-1998",
              "genre": "Fantasy",
              "summary": """
-    Harry returns for his second year at Hogwarts and discovers that a dark force is petrifying students. \
-    With the help of his friends Ron and Hermione, he uncovers secrets about the Chamber of Secrets. \
-    Facing danger and mystery, Harry grows braver and wiser as a young wizard.
-    """,
+            Harry returns for his second year at Hogwarts and discovers that a dark force is petrifying students. \
+            With the help of his friends Ron and Hermione, he uncovers secrets about the Chamber of Secrets. \
+            Facing danger and mystery, Harry grows braver and wiser as a young wizard.
+            """,
              "coverImage": "harry_potter2",
              "rating": 4.7,
              "price": 10.99],
@@ -66,10 +66,10 @@ class CoreDataManager {
              "publishedDate": "21-09-1937",
              "genre": "Fantasy",
              "summary": """
-    Bilbo Baggins, a quiet hobbit, is swept into an epic quest by the wizard Gandalf and a company of dwarves. \
-    They seek to reclaim the dwarves' homeland from the dragon Smaug. \
-    Bilbo encounters trolls, goblins, and discovers courage and cleverness he never knew he had.
-    """,
+            Bilbo Baggins, a quiet hobbit, is swept into an epic quest by the wizard Gandalf and a company of dwarves. \
+            They seek to reclaim the dwarves' homeland from the dragon Smaug. \
+            Bilbo encounters trolls, goblins, and discovers courage and cleverness he never knew he had.
+            """,
              "coverImage": "hobbit",
              "rating": 4.7,
              "price": 12.99],
@@ -79,10 +79,10 @@ class CoreDataManager {
              "publishedDate": "29-07-1954",
              "genre": "Fantasy",
              "summary": """
-    Frodo Baggins inherits the One Ring, a powerful artifact that could enslave Middle-earth. \
-    He begins a perilous journey to destroy it, forming a fellowship of diverse heroes. \
-    They face treacherous lands, dark creatures, and the looming threat of Sauron.
-    """,
+            Frodo Baggins inherits the One Ring, a powerful artifact that could enslave Middle-earth. \
+            He begins a perilous journey to destroy it, forming a fellowship of diverse heroes. \
+            They face treacherous lands, dark creatures, and the looming threat of Sauron.
+            """,
              "coverImage": "lotr1",
              "rating": 4.9,
              "price": 15.99],
@@ -92,10 +92,10 @@ class CoreDataManager {
              "publishedDate": "11-11-1954",
              "genre": "Fantasy",
              "summary": """
-    The fellowship is broken, but the quest continues. \
-    Frodo and Sam journey to Mordor, guided by the enigmatic Gollum. \
-    Meanwhile, Aragorn, Legolas, and Gimli fight to save Middle-earth from Sauron's armies.
-    """,
+            The fellowship is broken, but the quest continues. \
+            Frodo and Sam journey to Mordor, guided by the enigmatic Gollum. \
+            Meanwhile, Aragorn, Legolas, and Gimli fight to save Middle-earth from Sauron's armies.
+            """,
              "coverImage": "lotr2",
              "rating": 4.9,
              "price": 15.99],
@@ -105,10 +105,10 @@ class CoreDataManager {
              "publishedDate": "20-10-1955",
              "genre": "Fantasy",
              "summary": """
-    The final confrontation with Sauron unfolds as Frodo approaches Mount Doom. \
-    Allies unite to fight in epic battles, and the fate of Middle-earth hangs in the balance. \
-    Sacrifice, courage, and friendship shape the conclusion of this legendary saga.
-    """,
+            The final confrontation with Sauron unfolds as Frodo approaches Mount Doom. \
+            Allies unite to fight in epic battles, and the fate of Middle-earth hangs in the balance. \
+            Sacrifice, courage, and friendship shape the conclusion of this legendary saga.
+            """,
              "coverImage": "lotr3",
              "rating": 5.0,
              "price": 16.99],
@@ -119,10 +119,10 @@ class CoreDataManager {
              "publishedDate": "08-06-1949",
              "genre": "Dystopian",
              "summary": """
-    In a totalitarian society ruled by Big Brother, Winston Smith struggles for freedom and truth. \
-    Surveillance, propaganda, and oppression dominate daily life. \
-    Winston risks everything to rebel against the system, uncovering the harsh reality of a controlled world.
-    """,
+            In a totalitarian society ruled by Big Brother, Winston Smith struggles for freedom and truth. \
+            Surveillance, propaganda, and oppression dominate daily life. \
+            Winston risks everything to rebel against the system, uncovering the harsh reality of a controlled world.
+            """,
              "coverImage": "1984",
              "rating": 4.6,
              "price": 8.99],
@@ -132,10 +132,10 @@ class CoreDataManager {
              "publishedDate": "17-08-1945",
              "genre": "Dystopian",
              "summary": """
-    The animals of Manor Farm revolt against their human farmer, seeking equality and justice. \
-    However, power corrupts, and the pigs begin to resemble the oppressive humans they overthrew. \
-    A sharp allegory on society, politics, and the nature of power.
-    """,
+            The animals of Manor Farm revolt against their human farmer, seeking equality and justice. \
+            However, power corrupts, and the pigs begin to resemble the oppressive humans they overthrew. \
+            A sharp allegory on society, politics, and the nature of power.
+            """,
              "coverImage": "animal_farm",
              "rating": 4.5,
              "price": 7.99],
@@ -145,10 +145,10 @@ class CoreDataManager {
              "publishedDate": "01-01-1932",
              "genre": "Dystopian",
              "summary": """
-    A technologically advanced society controls citizens through conditioning and pleasure. \
-    Individuality and emotion are suppressed in favor of social stability. \
-    One man begins to question the system, seeking truth and authentic experience.
-    """,
+            A technologically advanced society controls citizens through conditioning and pleasure. \
+            Individuality and emotion are suppressed in favor of social stability. \
+            One man begins to question the system, seeking truth and authentic experience.
+            """,
              "coverImage": "brave_new_world",
              "rating": 4.3,
              "price": 9.49],
