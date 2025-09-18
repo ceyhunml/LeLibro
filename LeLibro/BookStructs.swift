@@ -11,3 +11,8 @@ struct GenreSection {
     let genre: String
     let books: [BookEntity]
 }
+
+struct FeaturedBooks {
+    let title: String
+    let bannerImage: String
+}
