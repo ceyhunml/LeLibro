@@ -78,7 +78,7 @@ class MenuViewController: UIViewController {
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 12
-                section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 18, leading: 16, bottom: 12, trailing: 16)
                 return section
                 
             } else if sectionIndex == 1 {
@@ -93,7 +93,7 @@ class MenuViewController: UIViewController {
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .groupPagingCentered
-                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
                 return section
             } else {
                 let itemSize = NSCollectionLayoutSize(
