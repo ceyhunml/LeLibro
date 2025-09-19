@@ -100,6 +100,7 @@ class MenuViewController: UIViewController {
                 section.orthogonalScrollingBehavior = .groupPagingCentered
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
                 return section
+                
             } else {
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.5),
@@ -148,24 +149,24 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GenreCollectionCell", for: indexPath) as! GenreCollectionCell
             let genre = genres[indexPath.item].genre
-            cell.genreLabel.text = genre
+            cell.configure(genreName: genre)
             cell.contentView.layer.cornerRadius = 12
             return cell
             
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeaturedBooksCell", for: indexPath) as! FeaturedBooksCell
             let item = featuredBooks[indexPath.item]
-            cell.coverImage.image = UIImage(named: item.bannerImage)
+            cell.configure(coverImage: item.bannerImage)
             return cell
             
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionCell", for: indexPath) as! BooksCollectionCell
             cell.layer.cornerRadius = 12
             let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
-            cell.priceLabel.text = "\(String(book.price))$"
-            cell.bookCover.image = UIImage(named: book.coverImage ?? "")
-            cell.bookNameLabel.text = book.title
-            cell.bookRating.text = String(book.rating)
+            cell.configure(bookName: book.title ?? "",
+                           bookCover: book.coverImage ?? "",
+                           bookPrice: String(book.price),
+                           bookRating: String(book.rating))
             return cell
             
         default:

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITabBarItem.appearance().setTitleTextAttributes(
         [
-            .font: UIFont(name: "Rosarivo", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .bold),
+            .font: UIFont(name: "Gill Sans", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .bold),
             .foregroundColor: UIColor.gray
         ],
         for: .normal
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     UITabBarItem.appearance().setTitleTextAttributes(
         [
-            .font: UIFont(name: "Rosarivo", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .bold),
+            .font: UIFont(name: "Gill Sans", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .bold),
             .foregroundColor: UIColor.main
         ],
         for: .selected

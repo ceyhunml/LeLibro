@@ -8,13 +8,13 @@
 import UIKit
 
 class BooksCollectionCell: UICollectionViewCell {
-    @IBOutlet weak var starField: UIView!
-    @IBOutlet weak var bookRating: UILabel!
-    @IBOutlet weak var bookCover: UIImageView!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var priceField: UIView!
-    @IBOutlet weak var basketButton: UIButton!
-    @IBOutlet weak var bookNameLabel: UILabel!
+    @IBOutlet private weak var starField: UIView!
+    @IBOutlet private weak var bookRating: UILabel!
+    @IBOutlet private weak var bookCover: UIImageView!
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var priceField: UIView!
+    @IBOutlet private weak var basketButton: UIButton!
+    @IBOutlet private weak var bookNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,4 +29,10 @@ class BooksCollectionCell: UICollectionViewCell {
     @IBAction func basketButtonPressed(_ sender: Any) {
     }
     
+    func configure(bookName: String, bookCover: String, bookPrice: String, bookRating: String) {
+        self.bookNameLabel.text = bookName
+        self.bookCover.image = UIImage(named: bookCover)
+        self.priceLabel.text = bookPrice
+        self.bookRating.text = bookRating
+    }
 }

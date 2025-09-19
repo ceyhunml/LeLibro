@@ -8,11 +8,15 @@
 import UIKit
 
 class FeaturedBooksCell: UICollectionViewCell {
-    @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet private weak var coverImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         coverImage.layer.cornerRadius = 16
+    }
+    
+    func configure(coverImage: String) {
+        self.coverImage.image = UIImage(named: coverImage)
     }
 
 }

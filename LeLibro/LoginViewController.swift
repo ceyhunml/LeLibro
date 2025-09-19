@@ -24,6 +24,10 @@ class LoginViewController: UIViewController {
         emailTextField.font = UIFont(name: "Rosarivo", size: 16)
         passwordTextField.font = UIFont(name: "Rosarivo", size: 16)
         signInButton.applyRosarivoFont(title: "Sign in", size: 16)
+        emailTextField.layer.cornerRadius = 10
+        passwordTextField.layer.cornerRadius = 10
+        emailTextField.clipsToBounds = true
+        passwordTextField.clipsToBounds = true
     }
     
     @IBAction func signInButtonPressed(_ sender: Any) {

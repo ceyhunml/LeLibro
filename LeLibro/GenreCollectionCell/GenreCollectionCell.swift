@@ -8,8 +8,8 @@
 import UIKit
 
 class GenreCollectionCell: UICollectionViewCell {
-    @IBOutlet weak var backView: UIView!
-    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet private weak var backView: UIView!
+    @IBOutlet private weak var genreLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -34,5 +34,9 @@ class GenreCollectionCell: UICollectionViewCell {
             backView.backgroundColor = .backgroundLayer
             genreLabel.textColor = .main
         }
+    }
+    
+    func configure(genreName: String) {
+        self.genreLabel.text = genreName
     }
 }

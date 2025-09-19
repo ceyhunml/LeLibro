@@ -638,35 +638,41 @@ Back!</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80j-fE-erS">
-                                <rect key="frame" x="185.66666666666666" y="585.33333333333337" width="31" height="14.333333333333371"/>
+                                <rect key="frame" x="185.66666666666666" y="561.33333333333337" width="31" height="14.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uk9-f7-ES5">
-                                <rect key="frame" x="30" y="611.66666666666663" width="342" height="14"/>
+                                <rect key="frame" x="30" y="579.66666666666663" width="342" height="14"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hao-GA-ql0">
-                                <rect key="frame" x="30" y="655.66666666666663" width="342" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hao-GA-ql0">
+                                <rect key="frame" x="30" y="623.66666666666663" width="342" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="ssW-Ir-qL3"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
                                 <color key="tintColor" name="mainColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Buy">
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Buy">
+                                    <color key="titleColor" name="searchBarColor"/>
                                     <imageReference key="image" image="basket" catalog="system" symbolScale="small"/>
-                                    <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="filled" title="Buy">
+                                    <imageReference key="image" image="basket" catalog="system" symbolScale="medium"/>
+                                    <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                     <color key="baseForegroundColor" name="searchBarColor"/>
+                                    <color key="baseBackgroundColor" name="mainColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="buyButtonPressed:" destination="qAM-Ny-ZKo" eventType="touchUpInside" id="aiO-Uw-V4o"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SZ-fh-fWt">
-                                <rect key="frame" x="185.66666666666666" y="555" width="31" height="14.333333333333371"/>
+                                <rect key="frame" x="185.66666666666666" y="543" width="31" height="14.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -675,7 +681,7 @@ Back!</string>
                         <viewLayoutGuide key="safeArea" id="n4R-qU-pAV"/>
                         <color key="backgroundColor" name="backgroundLayer"/>
                         <constraints>
-                            <constraint firstItem="8SZ-fh-fWt" firstAttribute="top" secondItem="gEl-vt-UpF" secondAttribute="bottom" constant="16" id="7H6-z9-PkE"/>
+                            <constraint firstItem="8SZ-fh-fWt" firstAttribute="top" secondItem="gEl-vt-UpF" secondAttribute="bottom" constant="4" id="7H6-z9-PkE"/>
                             <constraint firstItem="BZY-LK-Mnf" firstAttribute="top" secondItem="rnm-NA-heb" secondAttribute="bottom" constant="27" id="8Sn-xu-hXc"/>
                             <constraint firstItem="BZY-LK-Mnf" firstAttribute="leading" secondItem="uk9-f7-ES5" secondAttribute="leading" id="AYO-ZR-IFl"/>
                             <constraint firstItem="gEl-vt-UpF" firstAttribute="centerX" secondItem="B6P-rx-6La" secondAttribute="centerX" id="NJc-4j-hKC"/>
@@ -683,10 +689,10 @@ Back!</string>
                             <constraint firstItem="rnm-NA-heb" firstAttribute="top" secondItem="n4R-qU-pAV" secondAttribute="top" id="NmR-17-p5N"/>
                             <constraint firstItem="gEl-vt-UpF" firstAttribute="top" secondItem="BZY-LK-Mnf" secondAttribute="bottom" id="cnx-35-6Mb"/>
                             <constraint firstItem="uk9-f7-ES5" firstAttribute="width" secondItem="B6P-rx-6La" secondAttribute="width" multiplier="0.850746" id="eRD-NJ-D9R"/>
-                            <constraint firstItem="uk9-f7-ES5" firstAttribute="top" secondItem="80j-fE-erS" secondAttribute="bottom" constant="12" id="fhY-6Y-BW0"/>
+                            <constraint firstItem="uk9-f7-ES5" firstAttribute="top" secondItem="80j-fE-erS" secondAttribute="bottom" constant="4" id="fhY-6Y-BW0"/>
                             <constraint firstItem="8SZ-fh-fWt" firstAttribute="centerX" secondItem="B6P-rx-6La" secondAttribute="centerX" id="jH1-af-kad"/>
                             <constraint firstItem="uk9-f7-ES5" firstAttribute="centerX" secondItem="B6P-rx-6La" secondAttribute="centerX" id="mYf-Lc-r4F"/>
-                            <constraint firstItem="80j-fE-erS" firstAttribute="top" secondItem="8SZ-fh-fWt" secondAttribute="bottom" constant="16" id="p7h-wU-FWk"/>
+                            <constraint firstItem="80j-fE-erS" firstAttribute="top" secondItem="8SZ-fh-fWt" secondAttribute="bottom" constant="4" id="p7h-wU-FWk"/>
                             <constraint firstItem="80j-fE-erS" firstAttribute="centerX" secondItem="B6P-rx-6La" secondAttribute="centerX" id="qqS-U3-tZE"/>
                             <constraint firstItem="BZY-LK-Mnf" firstAttribute="trailing" secondItem="uk9-f7-ES5" secondAttribute="trailing" id="tMP-Ua-MTF"/>
                             <constraint firstItem="hao-GA-ql0" firstAttribute="leading" secondItem="uk9-f7-ES5" secondAttribute="leading" id="tbp-6b-A5p"/>

@@ -86,10 +86,10 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionCell", for: indexPath) as! BooksCollectionCell
         cell.layer.cornerRadius = 12
         let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
-        cell.priceLabel.text = "\(String(book.price))$"
-        cell.bookCover.image = UIImage(named: book.coverImage ?? "")
-        cell.bookNameLabel.text = book.title
-        cell.bookRating.text = String(book.rating)
+        cell.configure(bookName: book.title ?? "",
+                       bookCover: book.coverImage ?? "",
+                       bookPrice: String(book.price),
+                       bookRating: String(book.rating))
         return cell
     }
     

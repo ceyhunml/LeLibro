@@ -21,13 +21,17 @@ class BookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bookName.font = UIFont(name: "Rosarivo", size: 24)
+        authorName.font = UIFont(name: "Rosarivo", size: 16)
+        starLabel.font = UIFont(name: "Gill Sans", size: 12)
+        genreName.font = UIFont(name: "Rosarivo", size: 12)
         bookCover.image = UIImage(named: book?.coverImage ?? "")
         bookName.text = book?.title ?? ""
         authorName.text = book?.author ?? ""
         genreName.text = book?.genre ?? ""
         aboutBook.text = book?.summary ?? ""
         bookCover.layer.cornerRadius = 16
-        starLabel.text = "\(String(book?.rating ?? 0))✬"
+        starLabel.text = "\(String(book?.rating ?? 0)) ✬"
     }
 
     
