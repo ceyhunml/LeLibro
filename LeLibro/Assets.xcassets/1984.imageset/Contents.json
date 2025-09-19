@@ -1,9 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "platform" : "ios",
-      "size" : "1024x1024"
+      "filename" : "9780141036144-jacket-large.jpeg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

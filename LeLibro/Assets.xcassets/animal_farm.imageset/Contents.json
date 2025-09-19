@@ -1,9 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "platform" : "ios",
-      "size" : "1024x1024"
+      "filename" : "Animal-Farm-Book-Cover-New-1.jpg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
