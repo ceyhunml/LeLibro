@@ -84,21 +84,30 @@ class MenuViewController: UIViewController {
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 12
                 section.contentInsets = NSDirectionalEdgeInsets(top: 18, leading: 16, bottom: 12, trailing: 16)
+                
                 return section
                 
             } else if sectionIndex == 1 {
+                
+                let itemWidth = environment.container.effectiveContentSize.width * 0.9
                 let itemSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(0.9),
+                    widthDimension: .absolute(itemWidth),
                     heightDimension: .absolute(220)
                 )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
-                let groupSize = itemSize
+
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .absolute(itemWidth),
+                    heightDimension: .absolute(220)
+                )
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                
+
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .groupPagingCentered
+                section.interGroupSpacing = 10
+                
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
+
                 return section
                 
             } else {
@@ -118,6 +127,7 @@ class MenuViewController: UIViewController {
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 16
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16)
+                
                 return section
             }
         }
@@ -165,12 +175,13 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
             cell.configure(bookName: book.title ?? "",
                            bookCover: book.coverImage ?? "",
-                           bookPrice: String(book.price),
+                           bookPrice: "\(String(book.price))$",
                            bookRating: String(book.rating))
             return cell
             
         default:
             return UICollectionViewCell()
+            
         }
     }
     
@@ -196,6 +207,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
             navigationController?.show(controller, sender: nil)
             
         default: break
+            
         }
     }
 }
