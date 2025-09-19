@@ -439,17 +439,61 @@ Back!</string>
             </objects>
             <point key="canvasLocation" x="4491.0447761194027" y="1601.6018306636154"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="K3B-mg-BWU">
             <objects>
-                <viewController id="ysj-vc-HeU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="ysj-vc-HeU" customClass="SearchViewController" customModule="LeLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AiP-j0-l1D">
-                        <rect key="frame" x="0.0" y="0.0" width="402" height="757"/>
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="579"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uuS-Bm-omr">
+                                <rect key="frame" x="0.0" y="84" width="402" height="495"/>
+                                <color key="backgroundColor" name="backgroundLayer"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZdY-tB-2bX">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ECk-e6-1oU">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Da0-QL-etn">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abq-2h-7Vi" customClass="CustomSeachBar" customModule="LeLibro" customModuleProvider="target">
+                                <rect key="frame" x="20" y="8" width="362" height="60"/>
+                                <color key="backgroundColor" name="backgroundLayer"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="eSY-cD-TKq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ESx-rl-Eot"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="backgroundLayer"/>
+                        <constraints>
+                            <constraint firstItem="abq-2h-7Vi" firstAttribute="top" secondItem="ESx-rl-Eot" secondAttribute="top" constant="8" id="6my-bn-0Ru"/>
+                            <constraint firstItem="ESx-rl-Eot" firstAttribute="trailing" secondItem="uuS-Bm-omr" secondAttribute="trailing" id="DsH-Qw-T2p"/>
+                            <constraint firstItem="ESx-rl-Eot" firstAttribute="trailing" secondItem="abq-2h-7Vi" secondAttribute="trailing" constant="20" id="OFl-Xu-Uey"/>
+                            <constraint firstItem="uuS-Bm-omr" firstAttribute="leading" secondItem="ESx-rl-Eot" secondAttribute="leading" id="ULU-BR-7ux"/>
+                            <constraint firstItem="uuS-Bm-omr" firstAttribute="top" secondItem="abq-2h-7Vi" secondAttribute="bottom" constant="16" id="gXJ-Rg-wF4"/>
+                            <constraint firstItem="ESx-rl-Eot" firstAttribute="bottom" secondItem="uuS-Bm-omr" secondAttribute="bottom" id="wUX-xZ-0BV"/>
+                            <constraint firstItem="abq-2h-7Vi" firstAttribute="leading" secondItem="ESx-rl-Eot" secondAttribute="leading" constant="20" id="wkL-69-iiv"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="wPk-ZU-i6D"/>
+                    <navigationItem key="navigationItem" id="wPk-ZU-i6D">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collection" destination="uuS-Bm-omr" id="Po2-VS-g3u"/>
+                        <outlet property="searchBarContainer" destination="abq-2h-7Vi" id="1ZG-e6-QMb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9om-j5-uND" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -544,9 +588,17 @@ Back!</string>
                         <color key="badgeColor" name="mainColor"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eh6-R1-eOw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Eh6-R1-eOw">
                         <rect key="frame" x="0.0" y="124" width="402" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="backgroundLayer"/>
+                        <color key="barTintColor" name="backgroundLayer"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textShadowColor" name="backgroundLayer"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textShadowColor" name="backgroundLayer"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -556,6 +608,21 @@ Back!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bq-zj-Omx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-246.26865671641789" y="1601.6018306636154"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LOb-Kx-X4F">
+            <objects>
+                <viewController id="qAM-Ny-ZKo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B6P-rx-6La">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="n4R-qU-pAV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LaI-es-UVA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-755" y="2334"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="F9N-fG-ppH">
@@ -631,6 +698,7 @@ Back!</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DUF-UE-iUF">
                         <rect key="frame" x="0.0" y="124" width="402" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="backgroundLayer"/>
                         <color key="barTintColor" name="backgroundLayer"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

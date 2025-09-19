@@ -31,6 +31,11 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 140)
+        let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .backgroundLayer
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         books = manager.fetchBooks()
         groupBooksByGenre()
         featuredBooks = [
