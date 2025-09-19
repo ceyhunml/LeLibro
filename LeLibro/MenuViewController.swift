@@ -183,12 +183,16 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 1:
             let item = featuredBooks[indexPath.item]
             if let book = books.first(where: { $0.title == item.title }) {
-                showBookDetail(item: book)
+                let controller = storyboard?.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
+                controller.book = book
+                navigationController?.show(controller, sender: nil)
             }
             
         case 2:
             let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
-            showBookDetail(item: book)
+            let controller = storyboard?.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
+            controller.book = book
+            navigationController?.show(controller, sender: nil)
             
         default: break
         }

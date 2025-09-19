@@ -92,6 +92,13 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.bookRating.text = String(book.rating)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
+        let controller = storyboard?.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
+        controller.book = book
+        navigationController?.show(controller, sender: nil)
+    }
 }
     
     

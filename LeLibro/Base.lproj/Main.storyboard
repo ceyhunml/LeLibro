@@ -3,6 +3,7 @@
     <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -609,20 +610,103 @@ Back!</string>
             </objects>
             <point key="canvasLocation" x="-246.26865671641789" y="1601.6018306636154"/>
         </scene>
-        <!--View Controller-->
+        <!--Book View Controller-->
         <scene sceneID="LOb-Kx-X4F">
             <objects>
-                <viewController id="qAM-Ny-ZKo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookViewController" id="qAM-Ny-ZKo" customClass="BookViewController" customModule="LeLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B6P-rx-6La">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="angels_demons" translatesAutoresizingMaskIntoConstraints="NO" id="rnm-NA-heb">
+                                <rect key="frame" x="91" y="124" width="220" height="340"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="340" id="B7u-cZ-c5o"/>
+                                    <constraint firstAttribute="width" constant="220" id="tQl-NE-aZS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZY-LK-Mnf">
+                                <rect key="frame" x="30" y="491" width="342" height="28.666666666666629"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEl-vt-UpF">
+                                <rect key="frame" x="181.33333333333334" y="519.66666666666663" width="39.666666666666657" height="19.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="mainColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80j-fE-erS">
+                                <rect key="frame" x="185.66666666666666" y="585.33333333333337" width="31" height="14.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uk9-f7-ES5">
+                                <rect key="frame" x="30" y="611.66666666666663" width="342" height="14"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hao-GA-ql0">
+                                <rect key="frame" x="30" y="655.66666666666663" width="342" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="ssW-Ir-qL3"/>
+                                </constraints>
+                                <color key="tintColor" name="mainColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Buy">
+                                    <imageReference key="image" image="basket" catalog="system" symbolScale="small"/>
+                                    <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
+                                    <color key="baseForegroundColor" name="searchBarColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="buyButtonPressed:" destination="qAM-Ny-ZKo" eventType="touchUpInside" id="aiO-Uw-V4o"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SZ-fh-fWt">
+                                <rect key="frame" x="185.66666666666666" y="555" width="31" height="14.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="n4R-qU-pAV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="backgroundLayer"/>
+                        <constraints>
+                            <constraint firstItem="8SZ-fh-fWt" firstAttribute="top" secondItem="gEl-vt-UpF" secondAttribute="bottom" constant="16" id="7H6-z9-PkE"/>
+                            <constraint firstItem="BZY-LK-Mnf" firstAttribute="top" secondItem="rnm-NA-heb" secondAttribute="bottom" constant="27" id="8Sn-xu-hXc"/>
+                            <constraint firstItem="BZY-LK-Mnf" firstAttribute="leading" secondItem="uk9-f7-ES5" secondAttribute="leading" id="AYO-ZR-IFl"/>
+                            <constraint firstItem="gEl-vt-UpF" firstAttribute="centerX" secondItem="B6P-rx-6La" secondAttribute="centerX" id="NJc-4j-hKC"/>
+                            <constraint firstItem="rnm-NA-heb" firstAttribute="centerX" secondItem="B6P-rx-6La" secondAttribute="centerX" id="NV0-PN-tCN"/>
+                            <constraint firstItem="rnm-NA-heb" firstAttribute="top" secondItem="n4R-qU-pAV" secondAttribute="top" id="NmR-17-p5N"/>
+                            <constraint firstItem="gEl-vt-UpF" firstAttribute="top" secondItem="BZY-LK-Mnf" secondAttribute="bottom" id="cnx-35-6Mb"/>
+                            <constraint firstItem="uk9-f7-ES5" firstAttribute="width" secondItem="B6P-rx-6La" secondAttribute="width" multiplier="0.850746" id="eRD-NJ-D9R"/>
+                            <constraint firstItem="uk9-f7-ES5" firstAttribute="top" secondItem="80j-fE-erS" secondAttribute="bottom" constant="12" id="fhY-6Y-BW0"/>
+                            <constraint firstItem="8SZ-fh-fWt" firstAttribute="centerX" secondItem="B6P-rx-6La" secondAttribute="centerX" id="jH1-af-kad"/>
+                            <constraint firstItem="uk9-f7-ES5" firstAttribute="centerX" secondItem="B6P-rx-6La" secondAttribute="centerX" id="mYf-Lc-r4F"/>
+                            <constraint firstItem="80j-fE-erS" firstAttribute="top" secondItem="8SZ-fh-fWt" secondAttribute="bottom" constant="16" id="p7h-wU-FWk"/>
+                            <constraint firstItem="80j-fE-erS" firstAttribute="centerX" secondItem="B6P-rx-6La" secondAttribute="centerX" id="qqS-U3-tZE"/>
+                            <constraint firstItem="BZY-LK-Mnf" firstAttribute="trailing" secondItem="uk9-f7-ES5" secondAttribute="trailing" id="tMP-Ua-MTF"/>
+                            <constraint firstItem="hao-GA-ql0" firstAttribute="leading" secondItem="uk9-f7-ES5" secondAttribute="leading" id="tbp-6b-A5p"/>
+                            <constraint firstItem="hao-GA-ql0" firstAttribute="trailing" secondItem="uk9-f7-ES5" secondAttribute="trailing" id="tfM-Gb-0r0"/>
+                            <constraint firstItem="hao-GA-ql0" firstAttribute="top" secondItem="uk9-f7-ES5" secondAttribute="bottom" constant="30" id="tga-vK-ZuE"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="aboutBook" destination="uk9-f7-ES5" id="SlI-Ae-8Cj"/>
+                        <outlet property="authorName" destination="gEl-vt-UpF" id="NLo-O6-pFO"/>
+                        <outlet property="bookCover" destination="rnm-NA-heb" id="Fw0-Ul-NpW"/>
+                        <outlet property="bookName" destination="BZY-LK-Mnf" id="iZi-jO-EUo"/>
+                        <outlet property="buyButton" destination="hao-GA-ql0" id="SvN-bd-zjM"/>
+                        <outlet property="genreName" destination="80j-fE-erS" id="aTT-af-zjf"/>
+                        <outlet property="starLabel" destination="8SZ-fh-fWt" id="9MF-ay-ION"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LaI-es-UVA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-755" y="2334"/>
+            <point key="canvasLocation" x="-755.22388059701484" y="2333.4096109839816"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="F9N-fG-ppH">
@@ -711,7 +795,9 @@ Back!</string>
             <point key="canvasLocation" x="-2188.059701492537" y="1601.6018306636154"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="mainColor"/>
     <resources>
+        <image name="angels_demons" width="658" height="1000"/>
         <image name="backgroundImage" width="1024" height="768"/>
         <image name="basket" catalog="system" width="128" height="108"/>
         <image name="book" catalog="system" width="128" height="99"/>
@@ -723,6 +809,9 @@ Back!</string>
         </namedColor>
         <namedColor name="mainColor">
             <color red="0.93699997663497925" green="0.88999998569488525" blue="0.7839999794960022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="searchBarColor">
+            <color red="0.19599999487400055" green="0.17299999296665192" blue="0.21199999749660492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
