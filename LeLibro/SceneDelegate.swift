@@ -18,25 +18,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        if UserDefaults.standard.bool(forKey: "isLoggedIn") {
-            rootMenu()
+        UserStatusManager.shared.restoreUser()
+        
+        if UserStatusManager.shared.isLoggedIn {
+            rootMenu(animated: true)
         } else {
-            rootWelcome()
+            rootWelcome(animated: true)
         }
     }
 
-    func rootMenu() {
+    func rootMenu(animated: Bool) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
+
         window?.rootViewController = tabBarController
-        
         window?.makeKeyAndVisible()
+
+        if animated {
+            UIView.transition(with: window ?? UIWindow(),
+                              duration: 0.3,
+                              options: .transitionFlipFromRight,
+                              animations: nil,
+                              completion: nil)
+        }
     }
     
-    func rootWelcome() {
+    func rootWelcome(animated: Bool) {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController")
         window?.rootViewController = UINavigationController(rootViewController: controller)
         window?.makeKeyAndVisible()
+        
+        if animated {
+            UIView.transition(with: window ?? UIWindow(),
+                              duration: 0.3,
+                              options: .transitionFlipFromRight,
+                              animations: nil,
+                              completion: nil)
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

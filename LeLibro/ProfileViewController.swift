@@ -12,14 +12,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
-
     @IBAction func signOutButtonPressed(_ sender: Any) {
+        UserStatusManager.shared.logout()
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if let delegate = windowScene.delegate as? SceneDelegate {
-                delegate.rootMenu()
+                delegate.rootWelcome(animated: true)
             }
         }
     }

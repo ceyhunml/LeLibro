@@ -480,12 +480,8 @@ class CoreDataManager {
         }
     }
     
-    func userExists(email: String) -> Bool {
-        return fetchUsers().contains { $0.email == email }
-    }
-    
     func registerUser(email: String, password: String) -> UserEntity? {
-        if userExists(email: email) {
+        if fetchUser(byEmail: email) != nil {
             return nil
         }
         
@@ -507,6 +503,10 @@ class CoreDataManager {
         user.mobileNumber = mobile
         user.address = address
         saveContext()
+    }
+    
+    func fetchUser(byEmail email: String) -> UserEntity? {
+        return fetchUsers().first { $0.email == email }
     }
     
     

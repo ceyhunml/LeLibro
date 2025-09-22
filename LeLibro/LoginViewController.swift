@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     
+    let manager = CoreDataManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         welcomeLabel.font = UIFont(name: "Rosarivo", size: 48)
@@ -31,9 +33,26 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signInButtonPressed(_ sender: Any) {
-        let controller = storyboard?.instantiateViewController(withIdentifier: "MenuViewController")
-        navigationController?.show(controller!, sender: nil)
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text else { return }
+        
+        if email.isEmpty || password.isEmpty {
+            alertFor(title: "Empty Fields!", message: "Please, fill all areas!")
+        }
+        else if !email.contains("@") || !email.contains(".") {
+            alertFor(title: "Invalid Email!", message: "Please enter a valid email address!")
+        }
+        else if let user = manager.loginUser(email: email, password: password) {
+            UserStatusManager.shared.login(user: user)
+            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                if let delegate = windowScene.delegate as? SceneDelegate {
+                    delegate.rootMenu(animated: true)
+                }
+            }
+        }
+        else {
+            alertFor(title: "Login Failed!", message: "Wrong email or password.")
+        }
     }
-    
-
 }

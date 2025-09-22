@@ -54,12 +54,11 @@ class RegisterViewController: UIViewController {
         else if password != confPass {
             alertFor(title: "Password Error!", message: "Passwords do not match!")
         }
-        else if let _ = manager.registerUser(email: email, password: password) {
-            alertFor(title: "Welcome!", message: "Your account has been created!")
-            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        else if let user = manager.registerUser(email: email, password: password) {
+            UserStatusManager.shared.login(user: user)
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                 if let delegate = windowScene.delegate as? SceneDelegate {
-                    delegate.rootMenu()
+                    delegate.rootMenu(animated: true)
                 }
             }
         }
