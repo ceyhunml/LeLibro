@@ -12,20 +12,23 @@ class CoreDataManager {
     
     let context = AppDelegate().persistentContainer.viewContext
     
+    func saveContext() {
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    
+    // MARK: - BOOK FUNCTIONS
+    
     func fetchBooks() -> [BookEntity] {
         do {
             return try context.fetch(BookEntity.fetchRequest()) as! [BookEntity]
         } catch {
             print(error.localizedDescription)
             return []
-        }
-    }
-    
-    func saveContext() {
-        do {
-            try context.save()
-        } catch {
-            print("Core Data save error: \(error.localizedDescription)")
         }
     }
     
@@ -456,15 +459,84 @@ class CoreDataManager {
             book.coverImage = data["coverImage"] as? String
             book.rating = data["rating"] as? Double ?? 0.0
             book.price = data["price"] as? Double ?? 0.0
-            book.favorite = false
-            book.inCart = false
         }
         
         do {
             try context.save()
-            print("Sample books added successfully!")
         } catch {
-            print("Failed to save sample books: \(error)")
+            print(error.localizedDescription)
         }
+    }
+    
+    
+    // MARK: - USER FUNCTIONS
+    
+    func fetchUsers() -> [UserEntity] {
+        do {
+            return try context.fetch(UserEntity.fetchRequest()) as! [UserEntity]
+        } catch {
+            print(error.localizedDescription)
+            return []
+        }
+    }
+    
+    func userExists(email: String) -> Bool {
+        return fetchUsers().contains { $0.email == email }
+    }
+    
+    func registerUser(email: String, password: String) -> UserEntity? {
+        if userExists(email: email) {
+            return nil
+        }
+        
+        let user = UserEntity(context: context)
+        user.email = email
+        user.password = password
+        user.mobileNumber = nil
+        user.address = nil
+        
+        saveContext()
+        return user
+    }
+    
+    func loginUser(email: String, password: String) -> UserEntity? {
+        return fetchUsers().first { $0.email == email && $0.password == password }
+    }
+    
+    func updateUserProfile(user: UserEntity, mobile: String?, address: String?) {
+        user.mobileNumber = mobile
+        user.address = address
+        saveContext()
+    }
+    
+    
+    // MARK: - FAVORITES & BASKET
+    
+    func addBookToFavorites(user: UserEntity, book: BookEntity) {
+        user.addToFavorites(book)
+        saveContext()
+    }
+    
+    func removeBookFromFavorites(user: UserEntity, book: BookEntity) {
+        user.removeFromFavorites(book)
+        saveContext()
+    }
+    
+    func fetchFavorites(for user: UserEntity) -> [BookEntity] {
+        return (user.favorites as? Set<BookEntity>)?.sorted { ($0.title ?? "") < ($1.title ?? "") } ?? []
+    }
+    
+    func addBookToBasket(user: UserEntity, book: BookEntity) {
+        user.addToBasket(book)
+        saveContext()
+    }
+    
+    func removeBookFromBasket(user: UserEntity, book: BookEntity) {
+        user.removeFromBasket(book)
+        saveContext()
+    }
+    
+    func fetchBasket(for user: UserEntity) -> [BookEntity] {
+        return (user.basket as? Set<BookEntity>)?.sorted { ($0.title ?? "") < ($1.title ?? "") } ?? []
     }
 }

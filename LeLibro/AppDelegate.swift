@@ -15,6 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let manager = CoreDataManager()
+            
+            let hasSeeded = UserDefaults.standard.bool(forKey: "hasSeededBooks")
+            
+            if !hasSeeded {
+                manager.addSampleBooks(context: manager.context)
+                UserDefaults.standard.set(true, forKey: "hasSeededBooks")
+            }
+        
         UITabBarItem.appearance().setTitleTextAttributes(
         [
             .font: UIFont(name: "Gill Sans", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .bold),

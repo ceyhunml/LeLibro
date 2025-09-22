@@ -1,5 +1,5 @@
 //
-//  BookEntity+CoreDataClass.swift
+//  UserEntity+CoreDataClass.swift
 //  LeLibro
 //
 //  Created by Ceyhun Məmmədli on 22.09.25.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(BookEntity)
-public class BookEntity: NSManagedObject {
+@objc(UserEntity)
+public class UserEntity: NSManagedObject {
 
 }

@@ -3,13 +3,21 @@
     <entity name="BookEntity" representedClassName="BookEntity" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="coverImage" optional="YES" attributeType="String"/>
-        <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="genre" optional="YES" attributeType="String"/>
-        <attribute name="inCart" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="publishedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="summary" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="usersBasket" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="basket" inverseEntity="UserEntity"/>
+        <relationship name="usersFavorite" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="favorites" inverseEntity="UserEntity"/>
+    </entity>
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="mobileNumber" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <relationship name="basket" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BookEntity" inverseName="usersBasket" inverseEntity="BookEntity"/>
+        <relationship name="favorites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BookEntity" inverseName="usersFavorite" inverseEntity="BookEntity"/>
     </entity>
 </model>

@@ -17,6 +17,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var confPassTextField: UITextField!
     @IBOutlet weak var createLabel: UILabel!
     
+    let manager = CoreDataManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createLabel.font = UIFont(name: "Rosarivo", size: 48)
@@ -36,6 +38,11 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func createAccButtonPressed(_ sender: Any) {
+        if let email = emailTextField.text,
+           let password = passwordTextField.text,
+           let confPass = confPassTextField.text {
+            
+        }
     }
     
 }
