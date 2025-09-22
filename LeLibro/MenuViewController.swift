@@ -24,10 +24,6 @@ class MenuViewController: UIViewController {
     
     var books = [BookEntity]()
     
-    func showBookDetail(item: Any) {
-        print(item)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 140)

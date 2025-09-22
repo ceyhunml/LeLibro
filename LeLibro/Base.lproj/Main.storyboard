@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oXD-gk-9K9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -14,7 +14,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="LeLibro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="LeLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -384,17 +384,39 @@ Back!</string>
             </objects>
             <point key="canvasLocation" x="2482.0895522388059" y="-2.0594965675057209"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="ZkH-rK-M3K">
             <objects>
-                <viewController id="Ov5-ci-csm" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="Ov5-ci-csm" customClass="ProfileViewController" customModule="LeLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NuJ-iu-lis">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="757"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sim-Rl-1uS">
+                                <rect key="frame" x="30" y="662" width="342" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Ecc-xN-mnU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutButtonPressed:" destination="Ov5-ci-csm" eventType="touchUpInside" id="hjb-s2-Gh9"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="lKp-60-dWp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lKp-60-dWp" firstAttribute="trailing" secondItem="sim-Rl-1uS" secondAttribute="trailing" constant="30" id="4t0-Gl-Urb"/>
+                            <constraint firstItem="sim-Rl-1uS" firstAttribute="centerX" secondItem="NuJ-iu-lis" secondAttribute="centerX" id="Bgv-jk-sbD"/>
+                            <constraint firstItem="lKp-60-dWp" firstAttribute="bottom" secondItem="sim-Rl-1uS" secondAttribute="bottom" constant="50" id="vec-cp-Nym"/>
+                            <constraint firstItem="sim-Rl-1uS" firstAttribute="leading" secondItem="lKp-60-dWp" secondAttribute="leading" constant="30" id="xrw-4J-zh7"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bF2-qk-xBU"/>
+                    <connections>
+                        <outlet property="signOutButton" destination="sim-Rl-1uS" id="1Pn-mr-F29"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9d-1s-11O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -403,7 +425,7 @@ Back!</string>
         <!--Tab Bar Controller-->
         <scene sceneID="aIh-0B-9zi">
             <objects>
-                <tabBarController id="oXD-gk-9K9" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBar" id="oXD-gk-9K9" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="E7u-Xl-Obr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -445,11 +467,11 @@ Back!</string>
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" id="ysj-vc-HeU" customClass="SearchViewController" customModule="LeLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AiP-j0-l1D">
-                        <rect key="frame" x="0.0" y="0.0" width="402" height="579"/>
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="589"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uuS-Bm-omr">
-                                <rect key="frame" x="0.0" y="84" width="402" height="495"/>
+                                <rect key="frame" x="0.0" y="84" width="402" height="505"/>
                                 <color key="backgroundColor" name="backgroundLayer"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZdY-tB-2bX">
                                     <size key="itemSize" width="128" height="128"/>
@@ -525,7 +547,7 @@ Back!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J6E-nf-JBY">
-                                <rect key="frame" x="0.0" y="178" width="402" height="579"/>
+                                <rect key="frame" x="0.0" y="168" width="402" height="589"/>
                                 <color key="backgroundColor" name="backgroundLayer"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TsN-AI-WPX">
                                     <size key="itemSize" width="128" height="128"/>
@@ -563,24 +585,6 @@ Back!</string>
             </objects>
             <point key="canvasLocation" x="-1268.6567164179103" y="1601.6018306636154"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="g9g-7D-nWP">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gpI-aB-ifM" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CmB-Kz-MQx">
-                        <rect key="frame" x="0.0" y="124" width="402" height="54"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="0dr-R8-6uB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cay-6v-KH7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="111.94029850746269" y="-2.7459954233409607"/>
-        </scene>
         <!--Search-->
         <scene sceneID="sgq-sC-EVY">
             <objects>
@@ -590,7 +594,7 @@ Back!</string>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Eh6-R1-eOw">
-                        <rect key="frame" x="0.0" y="124" width="402" height="54"/>
+                        <rect key="frame" x="0.0" y="124" width="402" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="backgroundLayer"/>
                         <color key="barTintColor" name="backgroundLayer"/>
@@ -723,7 +727,7 @@ Back!</string>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dHf-bM-xTW">
-                        <rect key="frame" x="0.0" y="124" width="402" height="54"/>
+                        <rect key="frame" x="0.0" y="124" width="402" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -744,7 +748,7 @@ Back!</string>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r2L-p9-z8H">
-                        <rect key="frame" x="0.0" y="124" width="402" height="54"/>
+                        <rect key="frame" x="0.0" y="124" width="402" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -765,7 +769,7 @@ Back!</string>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uCm-i2-qaB">
-                        <rect key="frame" x="0.0" y="124" width="402" height="54"/>
+                        <rect key="frame" x="0.0" y="124" width="402" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -786,7 +790,7 @@ Back!</string>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DUF-UE-iUF">
-                        <rect key="frame" x="0.0" y="124" width="402" height="54"/>
+                        <rect key="frame" x="0.0" y="124" width="402" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="backgroundLayer"/>
                         <color key="barTintColor" name="backgroundLayer"/>

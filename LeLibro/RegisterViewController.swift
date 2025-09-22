@@ -19,8 +19,11 @@ class RegisterViewController: UIViewController {
     
     let manager = CoreDataManager()
     
+    var users = [UserEntity]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        users = manager.fetchUsers()
         createLabel.font = UIFont(name: "Rosarivo", size: 48)
         emailLabel.font = UIFont(name: "Rosarivo", size: 16)
         passwordLabel.font = UIFont(name: "Rosarivo", size: 16)
@@ -38,11 +41,30 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func createAccButtonPressed(_ sender: Any) {
-        if let email = emailTextField.text,
-           let password = passwordTextField.text,
-           let confPass = confPassTextField.text {
-            
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text,
+              let confPass = confPassTextField.text else { return }
+        
+        if email.isEmpty || password.isEmpty || confPass.isEmpty {
+            alertFor(title: "Empty Fields!", message: "Please, fill all areas!")
+        }
+        else if !email.contains("@") || !email.contains(".") {
+            alertFor(title: "Invalid Email!", message: "Your email address is not correct!")
+        }
+        else if password != confPass {
+            alertFor(title: "Password Error!", message: "Passwords do not match!")
+        }
+        else if let _ = manager.registerUser(email: email, password: password) {
+            alertFor(title: "Welcome!", message: "Your account has been created!")
+            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                if let delegate = windowScene.delegate as? SceneDelegate {
+                    delegate.rootMenu()
+                }
+            }
+        }
+        else {
+            alertFor(title: "Already Exists!", message: "User with this email already exists!")
         }
     }
-    
 }
