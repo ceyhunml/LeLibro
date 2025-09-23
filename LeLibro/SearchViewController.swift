@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
     
     var filteredBooks = [BookEntity]()
     
-    let manager = CoreDataManager()
+    let manager = CoreDataManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,26 @@ class SearchViewController: UIViewController {
         appearance.backgroundColor = .backgroundLayer
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    private func toggleFavorite(for book: BookEntity, currentUser: UserEntity) {
+        if let favorites = currentUser.favorites as? Set<BookEntity>,
+           favorites.contains(where: { $0.objectID == book.objectID }) {
+            currentUser.removeFromFavorites(book)
+        } else {
+            currentUser.addToFavorites(book)
+        }
+        CoreDataManager.shared.saveContext()
+    }
+
+    private func toggleBasket(for book: BookEntity, currentUser: UserEntity) {
+        if let basket = currentUser.basket as? Set<BookEntity>,
+           basket.contains(where: { $0.objectID == book.objectID }) {
+            currentUser.removeFromBasket(book)
+        } else {
+            currentUser.addToBasket(book)
+        }
+        CoreDataManager.shared.saveContext()
     }
     
     private func createLayout() -> UICollectionViewLayout {
@@ -85,11 +105,28 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionCell", for: indexPath) as! BooksCollectionCell
         cell.layer.cornerRadius = 12
+        
         let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
+
         cell.configure(bookName: book.title ?? "",
                        bookCover: book.coverImage ?? "",
-                       bookPrice: String(book.price),
-                       bookRating: String(book.rating))
+                       bookPrice: "\(String(book.price))$",
+                       bookRating: String(book.rating),
+                       book: book,
+                       currentUser: UserStatusManager.shared.currentUser)
+
+        cell.onFavoriteToggle = { book in
+            guard let user = UserStatusManager.shared.currentUser else { return }
+            self.toggleFavorite(for: book, currentUser: user)
+            cell.updateFavoriteIcon(for: book, currentUser: user)
+        }
+
+        cell.onBasketToggle = { book in
+            guard let user = UserStatusManager.shared.currentUser else { return }
+            self.toggleBasket(for: book, currentUser: user)
+            cell.updateBasketIcon(for: book, currentUser: user)
+        }
+        
         return cell
     }
     
@@ -100,5 +137,4 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         navigationController?.show(controller, sender: nil)
     }
 }
-    
     

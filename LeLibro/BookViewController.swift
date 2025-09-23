@@ -28,7 +28,12 @@ class BookViewController: UIViewController {
         bookCover.image = UIImage(named: book?.coverImage ?? "")
         bookName.text = book?.title ?? ""
         authorName.text = book?.author ?? ""
-        genreName.text = book?.genre ?? ""
+        if let date = book?.publishedDate {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd-MM-yyyy"
+            let formattedDate = formatter.string(from: date)
+            genreName.text = "\(book?.genre ?? "") - \(formattedDate)"
+        }
         aboutBook.text = book?.summary ?? ""
         bookCover.layer.cornerRadius = 16
         starLabel.text = "\(String(book?.rating ?? 0)) ✬"

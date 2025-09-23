@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let manager = CoreDataManager()
+        let manager = CoreDataManager.shared
             
             let hasSeeded = UserDefaults.standard.bool(forKey: "hasSeededBooks")
             

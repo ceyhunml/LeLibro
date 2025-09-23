@@ -7,18 +7,25 @@
 
 import Foundation
 import CoreData
+import UIKit
 
-class CoreDataManager {
+final class CoreDataManager {
     
-    let context = AppDelegate().persistentContainer.viewContext
-    
-    func saveContext() {
-        do {
-            try context.save()
-        } catch {
-            print(error.localizedDescription)
+    static let shared = CoreDataManager()
+        let context: NSManagedObjectContext
+
+        private init() {
+            let app = UIApplication.shared.delegate as! AppDelegate
+            context = app.persistentContainer.viewContext
         }
-    }
+
+        func saveContext() {
+            guard context.hasChanges else { return }
+            do { try context.save() }
+            catch let error as NSError {
+                print("Core Data save error:", error, error.userInfo)
+            }
+        }
     
     
     // MARK: - BOOK FUNCTIONS
@@ -506,7 +513,15 @@ class CoreDataManager {
     }
     
     func fetchUser(byEmail email: String) -> UserEntity? {
-        return fetchUsers().first { $0.email == email }
+        let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "email == %@", email)
+        request.relationshipKeyPathsForPrefetching = ["favorites", "basket"] 
+        do {
+            return try context.fetch(request).first
+        } catch {
+            print("Error fetching user by email: \(error)")
+            return nil
+        }
     }
     
     

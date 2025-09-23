@@ -722,7 +722,7 @@ Back!</string>
         <scene sceneID="F9N-fG-ppH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s80-Ue-4Bk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="star.fill" catalog="system" id="r5F-MK-Yla">
+                    <tabBarItem key="tabBarItem" title="Favorites" image="heart.fill" catalog="system" id="r5F-MK-Yla">
                         <color key="badgeColor" name="mainColor"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -811,11 +811,11 @@ Back!</string>
         <image name="backgroundImage" width="1024" height="768"/>
         <image name="basket" catalog="system" width="128" height="108"/>
         <image name="book" catalog="system" width="128" height="99"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="backgroundLayer">
-            <color red="0.10999999940395355" green="0.086000002920627594" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.10980392156862745" green="0.086274509803921567" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="mainColor">
             <color red="0.93699997663497925" green="0.88999998569488525" blue="0.7839999794960022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

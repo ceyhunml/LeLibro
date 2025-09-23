@@ -16,7 +16,7 @@ class MenuViewController: UIViewController {
     
     var selectedGenre: String?
     
-    let manager = CoreDataManager()
+    let manager = CoreDataManager.shared
     
     var filteredBooks = [BookEntity]()
     
@@ -47,6 +47,26 @@ class MenuViewController: UIViewController {
         collection.register(UINib(nibName: "FeaturedBooksCell", bundle: nil),
                             forCellWithReuseIdentifier: "FeaturedBooksCell")
         collection.reloadData()
+    }
+    
+    private func toggleFavorite(for book: BookEntity, currentUser: UserEntity) {
+        if let favorites = currentUser.favorites as? Set<BookEntity>,
+           favorites.contains(where: { $0.objectID == book.objectID }) {
+            currentUser.removeFromFavorites(book)
+        } else {
+            currentUser.addToFavorites(book)
+        }
+        CoreDataManager.shared.saveContext()
+    }
+
+    private func toggleBasket(for book: BookEntity, currentUser: UserEntity) {
+        if let basket = currentUser.basket as? Set<BookEntity>,
+           basket.contains(where: { $0.objectID == book.objectID }) {
+            currentUser.removeFromBasket(book)
+        } else {
+            currentUser.addToBasket(book)
+        }
+        CoreDataManager.shared.saveContext()
     }
     
     func groupBooksByGenre() {
@@ -169,10 +189,26 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionCell", for: indexPath) as! BooksCollectionCell
             cell.layer.cornerRadius = 12
             let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
+
             cell.configure(bookName: book.title ?? "",
                            bookCover: book.coverImage ?? "",
                            bookPrice: "\(String(book.price))$",
-                           bookRating: String(book.rating))
+                           bookRating: String(book.rating),
+                           book: book,
+                           currentUser: UserStatusManager.shared.currentUser)
+
+            cell.onFavoriteToggle = { book in
+                guard let user = UserStatusManager.shared.currentUser else { return }
+                self.toggleFavorite(for: book, currentUser: user)
+                cell.updateFavoriteIcon(for: book, currentUser: user)
+            }
+
+            cell.onBasketToggle = { book in
+                guard let user = UserStatusManager.shared.currentUser else { return }
+                self.toggleBasket(for: book, currentUser: user)
+                cell.updateBasketIcon(for: book, currentUser: user)
+            }
+            
             return cell
             
         default:

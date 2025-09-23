@@ -13,7 +13,7 @@ class UserStatusManager {
 
     var currentUser: UserEntity?
     
-    let manager = CoreDataManager()
+    let manager = CoreDataManager.shared
 
     var isLoggedIn: Bool {
         return currentUser != nil
@@ -30,9 +30,11 @@ class UserStatusManager {
     }
     
     func restoreUser() {
-        if let email = UserDefaults.standard.string(forKey: "loggedInEmail"),
-           let user = manager.fetchUser(byEmail: email) {
-            currentUser = user
+        if let email = UserDefaults.standard.string(forKey: "loggedInEmail") {
+            if let user = manager.fetchUser(byEmail: email) {
+                self.currentUser = user
+                print("🔄 Restored user: \(user.email ?? "") with \(user.favorites?.count ?? 0) favorites")
+            }
         }
     }
 }

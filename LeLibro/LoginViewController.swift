@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     
-    let manager = CoreDataManager()
+    let manager = CoreDataManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()

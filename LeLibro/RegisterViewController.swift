@@ -17,7 +17,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var confPassTextField: UITextField!
     @IBOutlet weak var createLabel: UILabel!
     
-    let manager = CoreDataManager()
+    let manager = CoreDataManager.shared
     
     var users = [UserEntity]()
     
