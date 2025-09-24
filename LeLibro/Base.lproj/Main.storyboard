@@ -483,6 +483,7 @@ Back!</string>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Order">
+                                    <backgroundConfiguration key="background" cornerRadius="10"/>
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -751,6 +752,7 @@ Back!</string>
                                     <imageReference key="image" image="basket" catalog="system" symbolScale="small"/>
                                 </state>
                                 <buttonConfiguration key="configuration" style="filled" title="Buy">
+                                    <backgroundConfiguration key="background" cornerRadius="10"/>
                                     <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                     <color key="baseForegroundColor" name="searchBarColor"/>
                                     <color key="baseBackgroundColor" name="mainColor"/>
