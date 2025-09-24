@@ -40,9 +40,24 @@ class BookViewController: UIViewController {
         aboutBook.text = book?.summary ?? ""
         bookCover.layer.cornerRadius = 16
         starLabel.text = "\(String(book?.rating ?? 0)) ✬"
+        buyButton.applyGillSansFont(title: "Buy for \(book?.price ?? 0)$", size: 20)
     }
 
     @IBAction func buyButtonPressed(_ sender: Any) {
+        guard let book = book,
+              let currentUser = UserStatusManager.shared.currentUser else { return }
         
+        if let basket = currentUser.basket as? Set<BookEntity>,
+           basket.contains(book) {
+            alertFor(title: "Already Added!",
+                     message: "\"\(book.title ?? "")\" is already in your basket.")
+        } else {
+            currentUser.addToBasket(book)
+            CoreDataManager.shared.saveContext()
+            UserStatusManager.shared.updateBadges()
+            
+            alertFor(title: "Success!",
+                     message: "\"\(book.title ?? "")\" has been added to your basket.")
+        }
     }
 }

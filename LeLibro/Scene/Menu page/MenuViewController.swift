@@ -21,12 +21,11 @@ class MenuViewController: UIViewController {
     
     func setup() {
         navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 140)
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .backgroundLayer
-        appearance.shadowColor = .clear
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        viewModel.appearance.configureWithOpaqueBackground()
+        viewModel.appearance.backgroundColor = UIColor.backgroundLayer
+        viewModel.appearance.shadowColor = UIColor.clear
+        navigationController?.navigationBar.standardAppearance = viewModel.appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = viewModel.appearance
         viewModel.books = viewModel.manager.fetchBooks()
         viewModel.groupBooksByGenre()
         collection.collectionViewLayout = createLayout()
@@ -36,6 +35,10 @@ class MenuViewController: UIViewController {
                             forCellWithReuseIdentifier: "FeaturedBooksCell")
         collection.delegate = self
         collection.dataSource = self
+        collection.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         collection.reloadData()
     }
     
@@ -164,12 +167,14 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 guard let user = UserStatusManager.shared.currentUser else { return }
                 self.viewModel.toggleFavorite(for: book, currentUser: user)
                 cell.updateFavoriteIcon(for: book, currentUser: user)
+                UserStatusManager.shared.updateBadges()
             }
             
             cell.onBasketToggle = { book in
                 guard let user = UserStatusManager.shared.currentUser else { return }
                 self.viewModel.toggleBasket(for: book, currentUser: user)
                 cell.updateBasketIcon(for: book, currentUser: user)
+                UserStatusManager.shared.updateBadges()
             }
             
             return cell

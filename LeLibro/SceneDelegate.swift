@@ -27,20 +27,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
-    func rootMenu(animated: Bool) {
+    func rootMenu(animated: Bool = true) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
+        
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .backgroundLayer
+
+        let itemAppearance = UITabBarItemAppearance()
+        itemAppearance.normal.badgeBackgroundColor = .main
+        itemAppearance.normal.badgeTextAttributes = [.foregroundColor: UIColor.black]
+        itemAppearance.selected.badgeBackgroundColor = .main
+        itemAppearance.selected.badgeTextAttributes = [.foregroundColor: UIColor.black]
+
+        appearance.stackedLayoutAppearance = itemAppearance
+        appearance.inlineLayoutAppearance = itemAppearance
+        appearance.compactInlineLayoutAppearance = itemAppearance
+        
+        tabBarController.tabBar.standardAppearance = appearance
+        tabBarController.tabBar.scrollEdgeAppearance = appearance
+
+        UserStatusManager.shared.tabBarController = tabBarController
 
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
 
         if animated {
-            UIView.transition(with: window ?? UIWindow(),
+            UIView.transition(with: window!,
                               duration: 0.3,
                               options: .transitionFlipFromRight,
                               animations: nil,
                               completion: nil)
         }
+        UserStatusManager.shared.updateBadges()
     }
     
     func rootWelcome(animated: Bool) {

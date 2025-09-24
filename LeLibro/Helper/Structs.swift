@@ -16,3 +16,8 @@ struct FeaturedBooks {
     let title: String
     let bannerImage: String
 }
+
+struct BasketItem {
+    var book: BookEntity
+    var quantity: Int
+}

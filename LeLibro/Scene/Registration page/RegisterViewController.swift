@@ -41,6 +41,7 @@ class RegisterViewController: UIViewController {
         emailTextField.clipsToBounds = true
         passwordTextField.clipsToBounds = true
         confPassTextField.clipsToBounds = true
+        hideKeyboardWhenTappedAround()
     }
     
     @IBAction func createAccButtonPressed(_ sender: Any) {

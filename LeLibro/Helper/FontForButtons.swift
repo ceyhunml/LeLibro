@@ -18,4 +18,14 @@ extension UIButton {
             self.setAttributedTitle(attrTitle, for: $0)
         }
     }
+    
+    func applyGillSansFont(title: String, size: CGFloat) {
+        
+        guard let font = UIFont(name: "Gill Sans", size: size) else { return }
+        let attrTitle = NSAttributedString(string: title, attributes: [.font: font])
+        
+        [UIControl.State.normal, .highlighted, .selected].forEach {
+            self.setAttributedTitle(attrTitle, for: $0)
+        }
+    }
 }

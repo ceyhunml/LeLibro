@@ -34,6 +34,7 @@ class LoginViewController: UIViewController {
         passwordTextField.layer.cornerRadius = 10
         emailTextField.clipsToBounds = true
         passwordTextField.clipsToBounds = true
+        hideKeyboardWhenTappedAround()
     }
     
     @IBAction func signInButtonPressed(_ sender: Any) {
