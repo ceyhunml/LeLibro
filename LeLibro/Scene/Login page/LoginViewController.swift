@@ -20,6 +20,10 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    func setup() {
         welcomeLabel.font = UIFont(name: "Rosarivo", size: 48)
         emailLabel.font = UIFont(name: "Rosarivo", size: 16)
         passwordLabel.font = UIFont(name: "Rosarivo", size: 16)

@@ -8,6 +8,7 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
+    
     @IBOutlet weak var confPassLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -17,13 +18,15 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var confPassTextField: UITextField!
     @IBOutlet weak var createLabel: UILabel!
     
-    let manager = CoreDataManager.shared
-    
-    var users = [UserEntity]()
+    let viewModel = RegisterViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        users = manager.fetchUsers()
+        setup()
+    }
+    
+    func setup() {
+        viewModel.users = viewModel.manager.fetchUsers()
         createLabel.font = UIFont(name: "Rosarivo", size: 48)
         emailLabel.font = UIFont(name: "Rosarivo", size: 16)
         passwordLabel.font = UIFont(name: "Rosarivo", size: 16)
@@ -54,7 +57,7 @@ class RegisterViewController: UIViewController {
         else if password != confPass {
             alertFor(title: "Password Error!", message: "Passwords do not match!")
         }
-        else if let user = manager.registerUser(email: email, password: password) {
+        else if let user = viewModel.manager.registerUser(email: email, password: password) {
             UserStatusManager.shared.login(user: user)
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                 if let delegate = windowScene.delegate as? SceneDelegate {

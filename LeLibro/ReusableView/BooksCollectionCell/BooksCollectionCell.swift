@@ -15,7 +15,7 @@ class BooksCollectionCell: UICollectionViewCell {
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var priceField: UIView!
     @IBOutlet private weak var basketButton: UIButton!
-    @IBOutlet weak var favoritesButton: UIButton!
+    @IBOutlet private weak var favoritesButton: UIButton!
     @IBOutlet private weak var bookNameLabel: UILabel!
     
     var book: BookEntity?
@@ -54,7 +54,7 @@ class BooksCollectionCell: UICollectionViewCell {
     }
     
     func updateFavoriteIcon(for book: BookEntity, currentUser: UserEntity) {
-        let isFavorite = (currentUser.favorites as? Set<BookEntity>)?.contains(where: { $0.objectID == book.objectID }) ?? false
+        let isFavorite = currentUser.favorites?.contains(book) ?? false
         let imageName = isFavorite ? "heart.fill" : "heart"
         favoritesButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
@@ -70,9 +70,9 @@ class BooksCollectionCell: UICollectionViewCell {
         onFavoriteToggle?(book)
     }
     
-    // 🛒 Basket basıldı
     @IBAction func basketButtonPressed(_ sender: UIButton) {
         guard let book = book else { return }
         onBasketToggle?(book)
     }
 }
+

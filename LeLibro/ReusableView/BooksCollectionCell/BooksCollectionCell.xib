@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -97,12 +98,12 @@
                             <constraint firstAttribute="width" constant="42" id="Dfa-27-9nr"/>
                             <constraint firstAttribute="height" constant="30" id="hRA-J6-dAs"/>
                         </constraints>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="mainColor"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="filled" image="heart">
                             <backgroundConfiguration key="background" cornerRadius="0.0"/>
                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20" scale="small" weight="thin"/>
-                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="baseForegroundColor" name="mainColor"/>
                             <color key="baseBackgroundColor" red="0.25490196078431371" green="0.25490196078431371" blue="0.25490196078431371" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                         </buttonConfiguration>
                         <connections>

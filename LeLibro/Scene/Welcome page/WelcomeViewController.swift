@@ -13,8 +13,13 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var getStartedLabel: UILabel!
     @IBOutlet weak var joinUsLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    func setup() {
         getStartedLabel.font = UIFont(name: "Rosarivo", size: 48)
         joinUsLabel.font = UIFont(name: "Rosarivo", size: 26)
         createAccountButton.applyRosarivoFont(title: "Create an account", size: 16)
@@ -30,7 +35,6 @@ class WelcomeViewController: UIViewController {
         let controller = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
         navigationController?.show(controller!, sender: nil)
     }
-    
 }
 
 

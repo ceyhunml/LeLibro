@@ -8,7 +8,9 @@
 import Foundation
 
 class UserStatusManager {
+    
     static let shared = UserStatusManager()
+    
     private init() {}
 
     var currentUser: UserEntity?
@@ -33,7 +35,6 @@ class UserStatusManager {
         if let email = UserDefaults.standard.string(forKey: "loggedInEmail") {
             if let user = manager.fetchUser(byEmail: email) {
                 self.currentUser = user
-                print("🔄 Restored user: \(user.email ?? "") with \(user.favorites?.count ?? 0) favorites")
             }
         }
     }

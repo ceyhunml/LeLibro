@@ -21,16 +21,19 @@ class BookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    func setup() {
         bookName.font = UIFont(name: "Rosarivo", size: 24)
         authorName.font = UIFont(name: "Rosarivo", size: 16)
         starLabel.font = UIFont(name: "Gill Sans", size: 12)
-        genreName.font = UIFont(name: "Rosarivo", size: 12)
         bookCover.image = UIImage(named: book?.coverImage ?? "")
         bookName.text = book?.title ?? ""
         authorName.text = book?.author ?? ""
         if let date = book?.publishedDate {
             let formatter = DateFormatter()
-            formatter.dateFormat = "dd-MM-yyyy"
+            formatter.dateFormat = "dd.MM.yyyy"
             let formattedDate = formatter.string(from: date)
             genreName.text = "\(book?.genre ?? "") - \(formattedDate)"
         }
@@ -39,7 +42,7 @@ class BookViewController: UIViewController {
         starLabel.text = "\(String(book?.rating ?? 0)) ✬"
     }
 
-    
     @IBAction func buyButtonPressed(_ sender: Any) {
+        
     }
 }

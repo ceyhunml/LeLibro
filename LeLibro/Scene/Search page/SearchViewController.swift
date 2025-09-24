@@ -12,48 +12,39 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBarContainer: CustomSeachBar!
     @IBOutlet weak var collection: UICollectionView!
     
-    var books = [BookEntity]()
-    
-    var filteredBooks = [BookEntity]()
-    
-    let manager = CoreDataManager.shared
+    let viewModel = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 140)
-        books = manager.fetchBooks()
-        filteredBooks = books
+        viewModel.appearance.configureWithOpaqueBackground()
+        viewModel.appearance.backgroundColor = UIColor.backgroundLayer
+        viewModel.appearance.shadowColor = UIColor.clear
+        navigationController?.navigationBar.standardAppearance = viewModel.appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = viewModel.appearance
         collection.collectionViewLayout = createLayout()
+        viewModel.books = viewModel.manager.fetchBooks()
+        viewModel.filteredBooks = viewModel.books
         collection.delegate = self
         collection.dataSource = self
         collection.register(UINib(nibName: "BooksCollectionCell", bundle: nil), forCellWithReuseIdentifier: "BooksCollectionCell")
         searchBarContainer.textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         collection.reloadData()
-        let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .backgroundLayer
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    private func toggleFavorite(for book: BookEntity, currentUser: UserEntity) {
-        if let favorites = currentUser.favorites as? Set<BookEntity>,
-           favorites.contains(where: { $0.objectID == book.objectID }) {
-            currentUser.removeFromFavorites(book)
+    @objc func textChanged() {
+        let query = searchBarContainer.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        
+        if query.isEmpty {
+            viewModel.filteredBooks = viewModel.books
         } else {
-            currentUser.addToFavorites(book)
+            viewModel.filteredBooks = viewModel.books.filter {
+                let titleMatch = $0.title?.lowercased().contains(query.lowercased()) ?? false
+                let authorMatch = $0.author?.lowercased().contains(query.lowercased()) ?? false
+                return titleMatch || authorMatch
+            }
         }
-        CoreDataManager.shared.saveContext()
-    }
-
-    private func toggleBasket(for book: BookEntity, currentUser: UserEntity) {
-        if let basket = currentUser.basket as? Set<BookEntity>,
-           basket.contains(where: { $0.objectID == book.objectID }) {
-            currentUser.removeFromBasket(book)
-        } else {
-            currentUser.addToBasket(book)
-        }
-        CoreDataManager.shared.saveContext()
+        collection.reloadSections(IndexSet(integer: 0))
     }
     
     private func createLayout() -> UICollectionViewLayout {
@@ -78,35 +69,20 @@ class SearchViewController: UIViewController {
             return section
         }
     }
-    
-    @objc func textChanged() {
-        let query = searchBarContainer.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        
-        if query.isEmpty {
-            filteredBooks = books
-        } else {
-            filteredBooks = books.filter {
-                let titleMatch = $0.title?.lowercased().contains(query.lowercased()) ?? false
-                let authorMatch = $0.author?.lowercased().contains(query.lowercased()) ?? false
-                return titleMatch || authorMatch
-            }
-        }
-        collection.reloadSections(IndexSet(integer: 0))
-    }
 }
 
 
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        filteredBooks.count
+        viewModel.filteredBooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionCell", for: indexPath) as! BooksCollectionCell
         cell.layer.cornerRadius = 12
         
-        let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
+        let book = viewModel.filteredBooks.isEmpty ? viewModel.books[indexPath.row] : viewModel.filteredBooks[indexPath.row]
 
         cell.configure(bookName: book.title ?? "",
                        bookCover: book.coverImage ?? "",
@@ -117,13 +93,13 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 
         cell.onFavoriteToggle = { book in
             guard let user = UserStatusManager.shared.currentUser else { return }
-            self.toggleFavorite(for: book, currentUser: user)
+            self.viewModel.toggleFavorite(for: book, currentUser: user)
             cell.updateFavoriteIcon(for: book, currentUser: user)
         }
 
         cell.onBasketToggle = { book in
             guard let user = UserStatusManager.shared.currentUser else { return }
-            self.toggleBasket(for: book, currentUser: user)
+            self.viewModel.toggleBasket(for: book, currentUser: user)
             cell.updateBasketIcon(for: book, currentUser: user)
         }
         
@@ -131,7 +107,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let book = filteredBooks.isEmpty ? books[indexPath.row] : filteredBooks[indexPath.row]
+        let book = viewModel.filteredBooks.isEmpty ? viewModel.books[indexPath.row] : viewModel.filteredBooks[indexPath.row]
         let controller = storyboard?.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
         controller.book = book
         navigationController?.show(controller, sender: nil)
