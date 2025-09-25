@@ -46,8 +46,21 @@ class BasketViewController: UIViewController {
     }
     
     @IBAction func orderButtonPressed(_ sender: Any) {
+        guard let user = UserStatusManager.shared.currentUser else { return }
+        
+        let address = user.address ?? ""
+        let number = user.mobileNumber ?? ""
+        
+        if address.isEmpty || number.isEmpty {
+            alertForEmptyFields()
+            return
+        }
+        user.basket = nil
+        CoreDataManager.shared.saveContext()
+        alertFor(title: "Thank You!", message: "Your order has been placed. We will contact you soon.")
+        reloadBasket()
     }
-    
+
     private func reloadBasket() {
         if let user = UserStatusManager.shared.currentUser,
            let basket = user.basket as? Set<BookEntity> {
