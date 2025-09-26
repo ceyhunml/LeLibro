@@ -9,11 +9,10 @@ import UIKit
 
 class BasketTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var bookCover: UIImageView!
-    @IBOutlet weak var bookTitle: UILabel!
-    @IBOutlet weak var bookCount: UILabel!
-    @IBOutlet weak var countChanger: UIStepper!
-    
+    @IBOutlet private weak var bookCover: UIImageView!
+    @IBOutlet private weak var bookTitle: UILabel!
+    @IBOutlet private weak var bookCount: UILabel!
+    @IBOutlet private weak var countChanger: UIStepper!
     
     var quantityChanged: ((Int) -> Void)?
     
@@ -32,11 +31,10 @@ class BasketTableViewCell: UITableViewCell {
         quantityChanged?(value)
     }
     
-    func configure(book: BookEntity, quantity: Int) {
-        bookTitle.text = "\(book.title ?? "")\n\(book.price)$"
-        bookCover.image = UIImage(named: book.coverImage ?? "")
+    func configure(book: Book, quantity: Int) {
+        bookTitle.text = "\(book.title)\n\(book.price)$"
+        bookCover.image = UIImage(named: book.coverImage)
         countChanger.value = Double(quantity)
         bookCount.text = "x\(quantity)"
     }
-    
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseViewController {
     
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var passwordLabel: UILabel!
@@ -25,8 +25,6 @@ class ProfileViewController: UIViewController {
     
     let manager = CoreDataManager.shared
     
-    let appearance = UINavigationBarAppearance()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -35,12 +33,7 @@ class ProfileViewController: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
-    func setup() {
-        navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 140)
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.backgroundLayer
-        appearance.shadowColor = UIColor.clear
-        navigationController?.navigationBar.standardAppearance = appearance
+    private func setup() {
         emailTextField.layer.cornerRadius = 10
         passwordTextField.layer.cornerRadius = 10
         addressTextField.layer.cornerRadius = 10
@@ -98,7 +91,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    @IBAction func signOutButtonPressed(_ sender: Any) {
+    @IBAction private func signOutButtonPressed(_ sender: Any) {
         UserStatusManager.shared.logout()
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if let delegate = windowScene.delegate as? SceneDelegate {

@@ -10,8 +10,8 @@ import CoreData
 
 class BasketViewModel {
     
-    var basketItems = [BookEntity]()
+    var basketItems = [Book]()
     
-    var quantities: [NSManagedObjectID: Int] = [:]
+    var quantities: [Int: Int] = [:]
     
 }

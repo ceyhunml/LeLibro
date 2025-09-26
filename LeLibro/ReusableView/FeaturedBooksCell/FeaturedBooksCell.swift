@@ -8,6 +8,7 @@
 import UIKit
 
 class FeaturedBooksCell: UICollectionViewCell {
+    
     @IBOutlet private weak var coverImage: UIImageView!
     
     override func awakeFromNib() {
@@ -18,5 +19,4 @@ class FeaturedBooksCell: UICollectionViewCell {
     func configure(coverImage: String) {
         self.coverImage.image = UIImage(named: coverImage)
     }
-
 }

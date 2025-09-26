@@ -2,7 +2,7 @@
 //  UserEntity+CoreDataClass.swift
 //  LeLibro
 //
-//  Created by Ceyhun Məmmədli on 23.09.25.
+//  Created by Ceyhun Məmmədli on 26.09.25.
 //
 //
 

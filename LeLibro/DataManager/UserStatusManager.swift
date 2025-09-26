@@ -12,7 +12,7 @@ class UserStatusManager {
     
     static let shared = UserStatusManager()
     private init() {}
-
+    
     var currentUser: UserEntity?
     let manager = CoreDataManager.shared
     
@@ -21,13 +21,15 @@ class UserStatusManager {
     var isLoggedIn: Bool {
         return currentUser != nil
     }
-
+    
     func login(user: UserEntity) {
         currentUser = user
-        UserDefaults.standard.set(user.email, forKey: "loggedInEmail")
+        if let email = user.email?.lowercased() {
+            UserDefaults.standard.set(email, forKey: "loggedInEmail")
+        }
         updateBadges()
     }
-
+    
     func logout() {
         currentUser = nil
         UserDefaults.standard.removeObject(forKey: "loggedInEmail")
@@ -35,7 +37,7 @@ class UserStatusManager {
     }
     
     func restoreUser() {
-        if let email = UserDefaults.standard.string(forKey: "loggedInEmail"),
+        if let email = UserDefaults.standard.string(forKey: "loggedInEmail")?.lowercased(),
            let user = manager.fetchUser(byEmail: email) {
             self.currentUser = user
         }
@@ -49,10 +51,10 @@ class UserStatusManager {
             tabBarController?.tabBar.items?[3].badgeValue = nil
             return
         }
-
-        let favoritesCount = user.favorites?.count ?? 0
-        let basketCount = user.basket?.count ?? 0
-
+        
+        let favoritesCount = user.favoritesArray.count
+        let basketCount = user.basketArray.count
+        
         tabBarController.tabBar.items?[2].badgeValue = favoritesCount > 0 ? "\(favoritesCount)" : nil
         tabBarController.tabBar.items?[3].badgeValue = basketCount > 0 ? "\(basketCount)" : nil
     }

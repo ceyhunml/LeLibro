@@ -7,10 +7,10 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: BaseViewController {
     
-    @IBOutlet weak var searchBarContainer: CustomSeachBar!
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet private weak var searchBarContainer: CustomSeachBar!
+    @IBOutlet private weak var collection: UICollectionView!
     
     let viewModel = SearchViewModel()
     
@@ -19,15 +19,9 @@ class SearchViewController: UIViewController {
         setup()
     }
     
-    func setup() {
-        navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 140)
-        viewModel.appearance.configureWithOpaqueBackground()
-        viewModel.appearance.backgroundColor = UIColor.backgroundLayer
-        viewModel.appearance.shadowColor = UIColor.clear
-        navigationController?.navigationBar.standardAppearance = viewModel.appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = viewModel.appearance
+    private func setup() {
         collection.collectionViewLayout = createLayout()
-        viewModel.books = viewModel.manager.fetchBooks()
+        viewModel.books = BookDataManager.shared.books
         viewModel.filteredBooks = viewModel.books
         collection.delegate = self
         collection.dataSource = self
@@ -41,15 +35,15 @@ class SearchViewController: UIViewController {
         collection.reloadData()
     }
     
-    @objc func textChanged() {
+    @objc private func textChanged() {
         let query = searchBarContainer.textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
         if query.isEmpty {
             viewModel.filteredBooks = viewModel.books
         } else {
             viewModel.filteredBooks = viewModel.books.filter {
-                let titleMatch = $0.title?.lowercased().contains(query.lowercased()) ?? false
-                let authorMatch = $0.author?.lowercased().contains(query.lowercased()) ?? false
+                let titleMatch = $0.title.lowercased().contains(query.lowercased())
+                let authorMatch = $0.author.lowercased().contains(query.lowercased())
                 return titleMatch || authorMatch
             }
         }
@@ -92,21 +86,21 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.layer.cornerRadius = 12
         
         let book = viewModel.filteredBooks.isEmpty ? viewModel.books[indexPath.row] : viewModel.filteredBooks[indexPath.row]
-
-        cell.configure(bookName: book.title ?? "",
-                       bookCover: book.coverImage ?? "",
+        
+        cell.configure(bookName: book.title,
+                       bookCover: book.coverImage,
                        bookPrice: "\(String(book.price))$",
                        bookRating: String(book.rating),
                        book: book,
                        currentUser: UserStatusManager.shared.currentUser)
-
+        
         cell.onFavoriteToggle = { book in
             guard let user = UserStatusManager.shared.currentUser else { return }
             self.viewModel.toggleFavorite(for: book, currentUser: user)
             cell.updateFavoriteIcon(for: book, currentUser: user)
             UserStatusManager.shared.updateBadges()
         }
-
+        
         cell.onBasketToggle = { book in
             guard let user = UserStatusManager.shared.currentUser else { return }
             self.viewModel.toggleBasket(for: book, currentUser: user)
@@ -124,4 +118,4 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         navigationController?.show(controller, sender: nil)
     }
 }
-    
+

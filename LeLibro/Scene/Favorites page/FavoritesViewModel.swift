@@ -6,35 +6,34 @@
 //
 
 import Foundation
-import UIKit
 
 class FavoritesViewModel {
     
-    var books = [BookEntity]()
+    var books = [Book]()
     
-    var favoriteBooks = [BookEntity]()
+    var favoriteBooks = [Book]()
     
     let manager = CoreDataManager.shared
     
-    let appearance = UINavigationBarAppearance()
-    
-    func toggleFavorite(for book: BookEntity, currentUser: UserEntity) {
-        if let favorites = currentUser.favorites as? Set<BookEntity>,
-           favorites.contains(where: { $0.objectID == book.objectID }) {
-            currentUser.removeFromFavorites(book)
+    func toggleFavorite(for book: Book, currentUser: UserEntity) {
+        var favorites = currentUser.favoritesArray
+        if favorites.contains(book.id) {
+            favorites.removeAll { $0 == book.id }
         } else {
-            currentUser.addToFavorites(book)
+            favorites.append(book.id)
         }
+        currentUser.favoritesArray = favorites
         CoreDataManager.shared.saveContext()
     }
     
-    func toggleBasket(for book: BookEntity, currentUser: UserEntity) {
-        if let basket = currentUser.basket as? Set<BookEntity>,
-           basket.contains(where: { $0.objectID == book.objectID }) {
-            currentUser.removeFromBasket(book)
+    func toggleBasket(for book: Book, currentUser: UserEntity) {
+        var basket = currentUser.basketArray
+        if basket.contains(book.id) {
+            basket.removeAll { $0 == book.id }
         } else {
-            currentUser.addToBasket(book)
+            basket.append(book.id)
         }
+        currentUser.basketArray = basket
         CoreDataManager.shared.saveContext()
     }
 }

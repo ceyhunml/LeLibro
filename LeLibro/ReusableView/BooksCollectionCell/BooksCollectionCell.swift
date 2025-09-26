@@ -18,11 +18,11 @@ class BooksCollectionCell: UICollectionViewCell {
     @IBOutlet private weak var favoritesButton: UIButton!
     @IBOutlet private weak var bookNameLabel: UILabel!
     
-    var book: BookEntity?
+    var book: Book?
     
-    var onFavoriteToggle: ((BookEntity) -> Void)?
+    var onFavoriteToggle: ((Book) -> Void)?
     
-    var onBasketToggle: ((BookEntity) -> Void)?
+    var onBasketToggle: ((Book) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,7 +39,7 @@ class BooksCollectionCell: UICollectionViewCell {
                    bookCover: String,
                    bookPrice: String,
                    bookRating: String,
-                   book: BookEntity,
+                   book: Book,
                    currentUser: UserEntity?) {
         self.book = book
         self.bookNameLabel.text = bookName
@@ -53,14 +53,14 @@ class BooksCollectionCell: UICollectionViewCell {
         }
     }
     
-    func updateFavoriteIcon(for book: BookEntity, currentUser: UserEntity) {
-        let isFavorite = currentUser.favorites?.contains(book) ?? false
+    func updateFavoriteIcon(for book: Book, currentUser: UserEntity) {
+        let isFavorite = currentUser.favoritesArray.contains(book.id)
         let imageName = isFavorite ? "heart.fill" : "heart"
         favoritesButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
-    
-    func updateBasketIcon(for book: BookEntity, currentUser: UserEntity) {
-        let inBasket = currentUser.basket?.contains(book) ?? false
+
+    func updateBasketIcon(for book: Book, currentUser: UserEntity) {
+        let inBasket = currentUser.basketArray.contains(book.id)
         let imageName = inBasket ? "cart.fill" : "cart"
         basketButton.setImage(UIImage(systemName: imageName), for: .normal)
     }

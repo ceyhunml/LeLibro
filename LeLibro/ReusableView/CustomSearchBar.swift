@@ -18,27 +18,27 @@ class CustomSeachBar: UIView {
         tf.clearButtonMode = .whileEditing
         return tf
     }()
-
+    
     let iconView: UIImageView = {
         let iv = UIImageView(image: UIImage(systemName: "magnifyingglass"))
         iv.tintColor = .main
         return iv
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
     }
-
+    
     private func setupUI() {
         backgroundColor = UIColor.searchBar
         clipsToBounds = true
-
+        
         textField.attributedPlaceholder = NSAttributedString(
             string: "Search for a book or author",
             attributes: [
@@ -56,18 +56,18 @@ class CustomSeachBar: UIView {
         
         addSubview(iconView)
         addSubview(textField)
-
+        
         iconView.backgroundColor = UIColor.searchBar
         
         iconView.translatesAutoresizingMaskIntoConstraints = false
         textField.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             iconView.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 0),
             iconView.centerYAnchor.constraint(equalTo: centerYAnchor),
             iconView.widthAnchor.constraint(equalToConstant: 20),
             iconView.heightAnchor.constraint(equalToConstant: 20),
-
+            
             textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
             textField.topAnchor.constraint(equalTo: topAnchor),

@@ -7,43 +7,42 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: BaseViewController {
     
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet private weak var collection: UICollectionView!
     
     let viewModel = FavoritesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 140)
-        viewModel.appearance.configureWithOpaqueBackground()
-        viewModel.appearance.backgroundColor = UIColor.backgroundLayer
-        viewModel.appearance.shadowColor = UIColor.clear
-        navigationController?.navigationBar.standardAppearance = viewModel.appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = viewModel.appearance
+        setup()
+    }
+    
+    private func setup() {
         collection.collectionViewLayout = createLayout()
         collection.delegate = self
         collection.dataSource = self
         collection.register(UINib(nibName: "BooksCollectionCell", bundle: nil), forCellWithReuseIdentifier: "BooksCollectionCell")
-        if let user = UserStatusManager.shared.currentUser,
-               let favorites = user.favorites as? Set<BookEntity> {
-                viewModel.favoriteBooks = Array(favorites)
-            }
+        if let user = UserStatusManager.shared.currentUser {
+            let favoriteIDs = user.favoritesArray
+            viewModel.favoriteBooks = BookDataManager.shared.books.filter { favoriteIDs.contains($0.id) }
+        }
         collection.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            reloadFavorites()
-        }
+        super.viewWillAppear(animated)
+        reloadFavorites()
+    }
     
     private func reloadFavorites() {
-        if let user = UserStatusManager.shared.currentUser,
-           let favorites = user.favorites as? Set<BookEntity> {
-            viewModel.favoriteBooks = Array(favorites)
+        if let user = UserStatusManager.shared.currentUser {
+            let favoriteIDs = user.favoritesArray
+            viewModel.favoriteBooks = BookDataManager.shared.books.filter { favoriteIDs.contains($0.id) }
         } else {
             viewModel.favoriteBooks = []
         }
+        
         collection.reloadData()
         
         if viewModel.favoriteBooks.isEmpty {
@@ -93,14 +92,14 @@ extension FavoritesViewController: UICollectionViewDelegateFlowLayout, UICollect
         cell.layer.cornerRadius = 12
         
         let book = viewModel.favoriteBooks[indexPath.row]
-
-        cell.configure(bookName: book.title ?? "",
-                       bookCover: book.coverImage ?? "",
+        
+        cell.configure(bookName: book.title,
+                       bookCover: book.coverImage,
                        bookPrice: "\(String(book.price))$",
                        bookRating: String(book.rating),
                        book: book,
                        currentUser: UserStatusManager.shared.currentUser)
-
+        
         cell.onFavoriteToggle = { [weak self] book in
             guard let self = self, let user = UserStatusManager.shared.currentUser else { return }
             self.viewModel.toggleFavorite(for: book, currentUser: user)

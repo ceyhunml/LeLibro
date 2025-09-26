@@ -8,26 +8,30 @@
 import UIKit
 import CoreData
 
-class MenuViewController: UIViewController {
+class MenuViewController: BaseViewController {
     
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet private weak var collection: UICollectionView!
     
     let viewModel = MenuViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewModel()
         setup()
     }
     
-    func setup() {
-        navigationItem.titleView = makeNavigationLogoView(imageName: "mainLogo", size: 140)
-        viewModel.appearance.configureWithOpaqueBackground()
-        viewModel.appearance.backgroundColor = UIColor.backgroundLayer
-        viewModel.appearance.shadowColor = UIColor.clear
-        navigationController?.navigationBar.standardAppearance = viewModel.appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = viewModel.appearance
-        viewModel.books = viewModel.manager.fetchBooks()
-        viewModel.groupBooksByGenre()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collection.reloadData()
+        if let selectedGenre = viewModel.selectedGenre,
+           let index = viewModel.genres.firstIndex(where: { $0.genre == selectedGenre }) {
+            
+            let indexPath = IndexPath(item: index, section: 0)
+            collection.selectItem(at: indexPath, animated: false, scrollPosition: [])
+        }
+    }
+    
+    private func setup() {
         collection.collectionViewLayout = createLayout()
         collection.register(UINib(nibName: "GenreCollectionCell", bundle: nil), forCellWithReuseIdentifier: "GenreCollectionCell")
         collection.register(UINib(nibName: "BooksCollectionCell", bundle: nil), forCellWithReuseIdentifier: "BooksCollectionCell")
@@ -36,13 +40,19 @@ class MenuViewController: UIViewController {
         collection.delegate = self
         collection.dataSource = self
         collection.reloadData()
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(item: 0, section: 0)
+            self.collection.selectItem(at: indexPath, animated: false, scrollPosition: [])
+            self.collection.delegate?.collectionView?(self.collection, didSelectItemAt: indexPath)
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        collection.reloadData()
+    func configureViewModel() {
+        viewModel.books = BookDataManager.shared.books
+        viewModel.groupBooksByGenre()
     }
     
-    func createLayout() -> UICollectionViewLayout {
+    private func createLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionIndex, environment -> NSCollectionLayoutSection? in
             
             if sectionIndex == 0 {
@@ -156,8 +166,8 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.layer.cornerRadius = 12
             let book = viewModel.filteredBooks.isEmpty ? viewModel.books[indexPath.row] : viewModel.filteredBooks[indexPath.row]
             
-            cell.configure(bookName: book.title ?? "",
-                           bookCover: book.coverImage ?? "",
+            cell.configure(bookName: book.title,
+                           bookCover: book.coverImage,
                            bookPrice: "\(String(book.price))$",
                            bookRating: String(book.rating),
                            book: book,
@@ -189,6 +199,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch indexPath.section {
         case 0:
             let selectedGenre = viewModel.genres[indexPath.item].genre
+            viewModel.selectedGenre = selectedGenre
             viewModel.filteredBooks = viewModel.books.filter { $0.genre == selectedGenre }
             collectionView.reloadSections(IndexSet(integer: 2))
             

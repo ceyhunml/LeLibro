@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 extension UIButton {
+    
     func applyRosarivoFont(title: String, size: CGFloat) {
         
         guard let font = UIFont(name: "Rosarivo", size: size) else { return }

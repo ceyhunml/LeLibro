@@ -9,12 +9,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet private weak var welcomeLabel: UILabel!
+    @IBOutlet private weak var emailLabel: UILabel!
+    @IBOutlet private weak var passwordLabel: UILabel!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var signInButton: UIButton!
     
     let manager = CoreDataManager.shared
     
@@ -23,41 +23,45 @@ class LoginViewController: UIViewController {
         setup()
     }
     
-    func setup() {
+    private func setup() {
         welcomeLabel.font = UIFont(name: "Rosarivo", size: 48)
-        emailLabel.font = UIFont(name: "Rosarivo", size: 16)
-        passwordLabel.font = UIFont(name: "Rosarivo", size: 16)
-        emailTextField.font = UIFont(name: "Rosarivo", size: 16)
-        passwordTextField.font = UIFont(name: "Rosarivo", size: 16)
+        let labels: [UILabel] = [emailLabel, passwordLabel]
+        labels.forEach { $0.font = UIFont(name: "Rosarivo", size: 16) }
+        let textFields: [UITextField] = [emailTextField, passwordTextField]
+        textFields.forEach {
+            $0.font = UIFont(name: "Rosarivo", size: 16)
+            $0.layer.cornerRadius = 10
+            $0.clipsToBounds = true
+        }
         signInButton.applyRosarivoFont(title: "Sign in", size: 16)
-        emailTextField.layer.cornerRadius = 10
-        passwordTextField.layer.cornerRadius = 10
-        emailTextField.clipsToBounds = true
-        passwordTextField.clipsToBounds = true
         hideKeyboardWhenTappedAround()
     }
     
-    @IBAction func signInButtonPressed(_ sender: Any) {
-        guard let email = emailTextField.text,
-              let password = passwordTextField.text else { return }
+    @IBAction private func signInButtonPressed(_ sender: Any) {
         
-        if email.isEmpty || password.isEmpty {
+        let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
+        let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        
+        guard !email.isEmpty, !password.isEmpty else {
             alertFor(title: "Empty Fields!", message: "Please, fill all areas!")
+            return
         }
-        else if !email.contains("@") || !email.contains(".") {
+        
+        guard email.contains("@"), email.contains(".") else {
             alertFor(title: "Invalid Email!", message: "Please enter a valid email address!")
+            return
         }
-        else if let user = manager.loginUser(email: email, password: password) {
-            UserStatusManager.shared.login(user: user)
-            
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                if let delegate = windowScene.delegate as? SceneDelegate {
-                    delegate.rootMenu(animated: true)
-                }
-            }
-        }
-        else {
+        
+        guard let user = manager.loginUser(email: email, password: password) else {
             alertFor(title: "Login Failed!", message: "Wrong email or password.")
+            return
+        }
+        
+        UserStatusManager.shared.login(user: user)
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let delegate = windowScene.delegate as? SceneDelegate {
+            delegate.rootMenu(animated: true)
         }
     }
 }

@@ -7,9 +7,21 @@
 
 import Foundation
 
+struct Book: Codable {
+    let id: Int
+    let title: String
+    let author: String
+    let publishedDate: String
+    let genre: String
+    let summary: String
+    let coverImage: String
+    let rating: Double
+    let price: Double
+}
+
 struct GenreSection {
     let genre: String
-    let books: [BookEntity]
+    let books: [Book]
 }
 
 struct FeaturedBooks {
@@ -18,6 +30,6 @@ struct FeaturedBooks {
 }
 
 struct BasketItem {
-    var book: BookEntity
+    var book: Book
     var quantity: Int
 }
